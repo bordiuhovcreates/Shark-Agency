@@ -1,0 +1,33 @@
+---
+// Кастомний курсор: оранжева крапка, що плавно слідує за мишею.
+// Над посиланнями й кнопками збільшується. Рух і стани — у src/scripts/cursor.js.
+// Додаткові атрибути в розмітці:
+//   data-cursor              — зробити збільшення курсора над будь-яким елементом
+//   data-cursor-blend        — над елементом курсор інвертує колір (mix-blend-mode)
+//   data-cursor-theme="dark" — над елементом курсор чорний (для оранжевого фону)
+// На тачскринах курсор вимкнений.
+---
+<div class="cursor" aria-hidden="true"></div>
+
+<style is:global>
+  .cursor {
+    position: fixed; top: 0; left: 0; z-index: 200;
+    width: var(--cursor-size); height: var(--cursor-size);
+    border: 1px solid var(--color-orange); border-radius: var(--radius-pill);
+    background-color: var(--color-orange-40);
+    pointer-events: none; opacity: 0; mix-blend-mode: normal; will-change: transform;
+    transition:
+      width var(--cursor-duration) var(--cursor-ease),
+      height var(--cursor-duration) var(--cursor-ease),
+      background-color var(--cursor-duration) var(--cursor-ease),
+      border-color var(--cursor-duration) var(--cursor-ease),
+      opacity var(--cursor-duration) var(--cursor-ease);
+  }
+  .cursor.is-visible { opacity: 1; }
+  .cursor.is-hover { width: var(--cursor-size-hover); height: var(--cursor-size-hover); background-color: var(--color-orange-30); }
+  .cursor.is-blend { mix-blend-mode: exclusion; }
+  .cursor.is-dark { border-color: var(--color-black); background-color: var(--color-black-40); }
+  .cursor.is-dark.is-hover { background-color: var(--color-black-30); }
+
+  @media (hover: none) and (pointer: coarse) { .cursor { display: none; } }
+</style>

@@ -6,7 +6,7 @@ import ContactButton from './ContactButton.astro';
 const { header, contacts, footer } = settings;
 const phoneHref = `tel:${contacts.phone.replace(/\s/g, '')}`;
 ---
-<section class="menu-mob" data-menu role="dialog" aria-label="Menu">
+<section class="menu-mob" data-menu data-cursor-theme="dark" role="dialog" aria-label="Menu">
   <div class="w-layout-vflex bullits-mob">
     {header.nav.map((l) => <a href={l.href} class="_50px-formula" data-menu-close>{l.label}</a>)}
     <ContactButton label={header.button} service="Mobile menu" variant="black" class="_30px-margin" />

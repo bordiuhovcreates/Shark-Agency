@@ -3,6 +3,7 @@ import '../styles/global.css';
 import settings from '../content/settings.json';
 import home from '../content/home.json';
 import { url } from '../lib/url';
+import Cursor from '../components/Cursor.astro';
 
 interface Props {
   title?: string;
@@ -64,7 +65,9 @@ const schema = {
   </head>
   <body>
     <slot />
+    <Cursor />
     <script>
+      import '../scripts/cursor.js';
       import '../scripts/animations.js';
       import '../scripts/interactive.js';
     </script>
