@@ -1,0 +1,80 @@
+---
+// Підвал: Lottie-акула прокручується зі скролом, поверх — контакти, соцмережі, юридичні посилання.
+import settings from '../content/settings.json';
+import { url } from '../lib/url';
+
+const { contacts, footer, social, legal } = settings;
+const phoneHref = `tel:${contacts.phone.replace(/\s/g, '')}`;
+---
+<footer class="footer" data-scene>
+  <div class="lottie-wrapper" aria-hidden="true">
+    <div class="lottie-shark" data-lottie={url(footer.lottie)} data-scrub-lottie="25 73"></div>
+  </div>
+  <div class="footer-container">
+    <div class="w-layout-grid grid-high-footer">
+      <a href={url('/')} aria-current="page" class="home-link" aria-label={settings.seo.title}>
+        <img src={url(settings.header.logo)} loading="lazy" width="57" height="57" alt="" class="logo-footer" />
+      </a>
+      <div class="w-layout-vflex maill-est">
+        <div class="_18px-neue white foot">{contacts.email}</div>
+        <div class="_18px-neue white">{footer.since}</div>
+      </div>
+      <div class="_18px-neue orange right footer-clock">{footer.clock}</div>
+    </div>
+    <div class="w-layout-vflex cta">
+      <div class="_30px-formula white _22px-mob">{footer.cta}</div>
+      <div class="_30px-formula white _22px-mob foot">{contacts.email}</div>
+    </div>
+    <div class="w-layout-grid contact-footer">
+      <div class="w-layout-vflex footer-contact">
+        <div class="_18px-neue _40 _10-margine">{footer.contactLabel}</div>
+        <a href={`mailto:${contacts.email}`} class="_18px-neue white foot">{contacts.email}</a>
+        <a href={phoneHref} class="_18px-neue white foot">{contacts.phone}</a>
+      </div>
+      <div class="w-layout-vflex footer-contact">
+        <div class="_18px-neue _40 _10-margine">{footer.addressLabel}</div>
+        <div class="_18px-neue white _188px foot">{contacts.address}</div>
+      </div>
+      <div class="w-layout-vflex footer-contact">
+        <div class="_18px-neue _40 _10-margine">{footer.socialLabel}</div>
+        {social.map((s) => s.href
+          ? <a href={url(s.href)} target="_blank" rel="noopener" class="_18px-neue white foot">{s.label}</a>
+          : <div class="_18px-neue white foot">{s.label}</div>)}
+      </div>
+      <div class="w-layout-vflex footer-contact">
+        <div class="_18px-neue _40 _10-margine">{footer.legalLabel}</div>
+        {legal.map((l) => l.href
+          ? <a href={url(l.href)} class="_18px-neue white foot">{l.label}</a>
+          : <div class="_18px-neue white foot">{l.label}</div>)}
+      </div>
+      <div class="_18px-neue white none">{footer.rights}</div>
+      <div class="_18px-neue white none">{footer.year}</div>
+      <div class="_18px-neue white _40">{footer.copyright}</div>
+      <div class="_18px-neue white _40">{footer.credit}</div>
+    </div>
+  </div>
+</footer>
+
+<style is:global>
+  .footer { z-index: 2; width: 100%; height: 2500px; margin-top: var(--space-240); position: relative; }
+  .lottie-wrapper { width: 100%; height: 100svh; position: sticky; top: 0; }
+  .lottie-shark { width: 100%; }
+  .footer-container { flex-flow: column; justify-content: space-between; width: 100%; height: 100svh; margin-top: -100svh; padding: var(--space-60) var(--space-40) var(--space-40); display: flex; position: sticky; top: 0; }
+  .grid-high-footer { grid-column-gap: 0px; grid-row-gap: 0px; grid-template-rows: auto; grid-template-columns: 58.125em 38.75em 18.125em; height: 11.875em; }
+  .home-link { max-width: 100%; display: inline-block; }
+  .logo-footer { width: 3.5625em; height: 3.5625em; }
+  .maill-est { grid-column-gap: var(--space-10); grid-row-gap: var(--space-10); }
+  .cta { grid-column-gap: var(--space-10); grid-row-gap: var(--space-10); mix-blend-mode: difference; align-items: center; }
+  .contact-footer { grid-column-gap: 0em; grid-row-gap: var(--space-60); grid-template-columns: 29.0625em 29.0625em 29.0625em 27.8125em; }
+
+  @media screen and (max-width: 479px) {
+    .footer { margin-top: var(--space-100); position: relative; overflow: clip; }
+    .lottie-shark { width: 100em; height: 100svh; margin-left: -37em; }
+    .footer-container { justify-content: flex-start; padding: var(--space-20); }
+    .grid-high-footer { grid-row-gap: var(--space-30); grid-template-rows: auto auto; grid-template-columns: 11.25em 10.625em; height: auto; }
+    .grid-high-footer .footer-clock { grid-area: 2 / 2 / 3 / 3; }
+    .logo-footer { width: 1.875em; height: 1.875em; }
+    .cta { margin-top: 8em; }
+    .contact-footer { grid-row-gap: 2.75em; grid-template-rows: auto auto auto; grid-template-columns: 11.25em 10.625em; position: absolute; inset: auto 0 var(--space-20) var(--space-20); }
+  }
+</style>

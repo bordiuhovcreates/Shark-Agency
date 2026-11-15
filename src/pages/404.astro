@@ -1,0 +1,16 @@
+---
+import Base from '../layouts/Base.astro';
+import { url } from '../lib/url';
+---
+<Base title="Page not found" noindex>
+  <main class="utility-page">
+    <p class="_260px-formula">404</p>
+    <h1 class="heading-110px">Page not found</h1>
+    <a class="_18px-neue white foot" href={url('/')}>Back to home</a>
+  </main>
+</Base>
+
+<style is:global>
+  .utility-page { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: var(--space-30); padding: var(--space-40); text-align: center; }
+  .utility-page p { margin: 0; }
+</style>

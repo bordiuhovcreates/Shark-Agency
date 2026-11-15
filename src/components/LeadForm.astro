@@ -1,0 +1,119 @@
+---
+// Форма заявки. Надсилає дані в Google Apps Script, звідти — у Telegram і Google-таблицю.
+// Адреса скрипта: FORM_ENDPOINT у файлі site.config.mjs.
+import { FORM_ENDPOINT } from '../../site.config.mjs';
+import home from '../content/home.json';
+
+interface Props {
+  service?: string; // назва форми в заявці
+}
+const { service = 'Popup' } = Astro.props;
+const { form } = home;
+---
+<div class="form-content lead-form">
+  <form class="form-content" data-lead-form data-endpoint={FORM_ENDPOINT} data-wait={form.wait}>
+    <div class="w-layout-hflex _1-row-form">
+      <div class="w-layout-vflex _1-input">
+        <label for="lead-name" class="_24px-fulmula">{form.nameLabel}</label>
+        <input class="input" maxlength="256" name="name" placeholder={form.namePlaceholder} type="text" id="lead-name" autocomplete="name" required />
+      </div>
+      <div class="w-layout-vflex _1-input">
+        <label for="lead-email" class="_24px-fulmula">{form.emailLabel}</label>
+        <input class="input" maxlength="256" name="email" placeholder={form.emailPlaceholder} type="email" id="lead-email" autocomplete="email" required />
+      </div>
+    </div>
+    <div class="w-layout-vflex _1-input">
+      <label for="lead-phone" class="_24px-fulmula">{form.phoneLabel}</label>
+      <input class="input phone" maxlength="256" name="phone" placeholder={form.phonePlaceholder} type="tel" id="lead-phone" autocomplete="tel" inputmode="tel" required />
+    </div>
+    <input type="hidden" name="service" value={service} />
+    <!-- Поле-пастка від спаму: людина його не бачить -->
+    <input type="text" name="website" class="lead-form__trap" tabindex="-1" autocomplete="off" aria-hidden="true" />
+    <input type="submit" class="buttom-form" value={form.button} />
+  </form>
+  <div class="success-message" hidden><div class="text">{form.success}</div></div>
+  <div class="error-message" role="alert" hidden><div class="error">{form.error}</div></div>
+</div>
+
+<style is:global>
+  .form-content { height: auto; margin-bottom: 0; }
+  ._1-input { grid-column-gap: var(--space-20); grid-row-gap: var(--space-20); }
+  ._24px-fulmula { color: var(--color-black); font-family: var(--font-formula); font-size: var(--text-24); font-weight: 400; line-height: 1; }
+  .input { display: block; width: 17.9167em; height: 3.33333em; color: var(--color-black); background-color: var(--color-transparent); border: 1px dotted var(--color-black-40); border-radius: var(--radius-2); margin-bottom: 0; padding: 0 0 0 var(--space-20); font-family: var(--font-formula); font-size: var(--text-24); line-height: 1; }
+  .input:focus { outline: 0; border-color: var(--color-black); }
+  .input::placeholder { color: var(--color-black-40); }
+  .input.phone { width: 100%; }
+  ._1-row-form { grid-column-gap: var(--space-20); grid-row-gap: var(--space-20); justify-content: space-between; width: 100%; margin-bottom: var(--space-50); }
+  .buttom-form { background-color: var(--color-black); width: 100%; height: 3.33333em; color: var(--color-orange); border: 0; border-radius: var(--radius-2); margin-top: var(--space-20); padding: 0; font-family: var(--font-formula); font-size: var(--text-24); line-height: 1; cursor: pointer; -webkit-appearance: button; }
+  .buttom-form[disabled] { opacity: .6; pointer-events: none; }
+  .lead-form__trap { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+  .error-message { margin-top: 10px; padding: 10px; background-color: var(--color-orange); border: 1px dotted var(--color-black-40); border-radius: .12em; }
+  .error { color: var(--color-black); font-family: var(--font-formula); font-size: var(--text-24); }
+  .success-message { background-color: var(--color-orange); border: 1px dotted var(--color-black-40); border-radius: var(--radius-3); width: 55em; height: 25.5em; padding: 0; text-align: center; }
+  .text { color: var(--color-black); padding-top: 8em; font-family: var(--font-formula); font-size: var(--text-24); line-height: 1; }
+  .lead-form [hidden] { display: none; }
+
+  @media screen and (max-width: 479px) {
+    ._1-input { grid-column-gap: var(--space-10); grid-row-gap: var(--space-10); }
+    ._24px-fulmula { font-size: var(--text-18); }
+    .input { width: 19.4444em; font-size: var(--text-18); }
+    ._1-row-form { flex-flow: column; margin-bottom: var(--space-30); }
+    .buttom-form { font-size: var(--text-18); }
+    .error { font-size: var(--text-16); }
+    .success-message { width: 21.875em; height: 25.9375em; }
+    .text { width: 10em; margin-left: auto; margin-right: auto; padding-top: 10.5em; font-size: var(--text-18); }
+  }
+</style>
+
+<script>
+  const forms = document.querySelectorAll<HTMLFormElement>('[data-lead-form]');
+
+  forms.forEach((form) => {
+    const wrap = form.parentElement!;
+    const success = wrap.querySelector<HTMLElement>('.success-message')!;
+    const error = wrap.querySelector<HTMLElement>('.error-message')!;
+    const button = form.querySelector<HTMLInputElement>('input[type="submit"]')!;
+    const label = button.value;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      error.hidden = true;
+
+      const data = Object.fromEntries(new FormData(form)) as Record<string, string>;
+      const payload = {
+        ...data,
+        name: (data.name || '').trim(),
+        email: (data.email || '').trim(),
+        phone: (data.phone || '').trim(),
+      };
+
+      const endpoint = form.dataset.endpoint;
+      if (!endpoint) {
+        console.warn('FORM_ENDPOINT порожній: вкажіть URL Google Apps Script у site.config.mjs');
+        error.hidden = false;
+        return;
+      }
+
+      button.disabled = true;
+      button.value = form.dataset.wait || label;
+      try {
+        // text/plain — щоб браузер не блокував запит до Google (CORS)
+        const res = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload),
+        });
+        const json = await res.json();
+        if (!json.ok) throw new Error(json.error || 'Error');
+        form.hidden = true;
+        success.hidden = false;
+      } catch (err) {
+        console.error(err);
+        error.hidden = false;
+      } finally {
+        button.disabled = false;
+        button.value = label;
+      }
+    });
+  });
+</script>

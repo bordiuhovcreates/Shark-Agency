@@ -1,0 +1,50 @@
+{
+  "seo": {
+    "title": "Shark Scale Agency",
+    "description": "We don’t chase trends — we build strategies that put brands ahead of the competition and keep them there.",
+    "ogImage": "/images/og-image.png",
+    "alternateName": "Shark Agency",
+    "foundingDate": "2018-01-01"
+  },
+  "header": {
+    "logo": "/images/logo.svg",
+    "button": "Contact Us",
+    "menuButton": "Menu",
+    "closeButton": "Close",
+    "nav": [
+      { "label": "About Us", "href": "#about" },
+      { "label": "Services", "href": "#service" },
+      { "label": "Team", "href": "#team" },
+      { "label": "Faq", "href": "#faq" }
+    ]
+  },
+  "contacts": {
+    "email": "hello@sharkagency.com",
+    "phone": "+1 (514) 555-2487",
+    "address": "360 Saint-Paul Street W Montréal, QC H2Y 2A6 Canada"
+  },
+  "social": [
+    { "label": "Instagram", "href": "#" },
+    { "label": "Linkedin", "href": "" },
+    { "label": "Patreon", "href": "" }
+  ],
+  "legal": [
+    { "label": "Privacy Policy", "href": "" },
+    { "label": "Terms of Use", "href": "" }
+  ],
+  "footer": {
+    "lottie": "/lottie/footer.json",
+    "since": "EST 2018 ©",
+    "clock": "WED 16:29:54 (GMT+2)",
+    "cta": "Let’s make an impact together.",
+    "contactLabel": "Contact",
+    "addressLabel": "Adress",
+    "socialLabel": "Social",
+    "legalLabel": "Legal",
+    "rights": "ALL RIGHTS RESERVED",
+    "year": "2026",
+    "copyright": "© Shark Agency",
+    "credit": "Website by Bordiuhovv"
+  },
+  "scrollIndicator": "0% SCROLL"
+}

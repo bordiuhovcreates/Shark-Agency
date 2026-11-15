@@ -1,0 +1,39 @@
+---
+// Мобільне меню (помаранчева панель, виїжджає справа). Відкривається кнопкою Menu.
+import settings from '../content/settings.json';
+import ContactButton from './ContactButton.astro';
+
+const { header, contacts, footer } = settings;
+const phoneHref = `tel:${contacts.phone.replace(/\s/g, '')}`;
+---
+<section class="menu-mob" data-menu role="dialog" aria-label="Menu">
+  <div class="w-layout-vflex bullits-mob">
+    {header.nav.map((l) => <a href={l.href} class="_50px-formula" data-menu-close>{l.label}</a>)}
+    <ContactButton label={header.button} service="Mobile menu" variant="black" class="_30px-margin" />
+  </div>
+  <div class="w-layout-hflex contact-menu">
+    <div class="w-layout-vflex footer-contact">
+      <div class="_18px-neue _40 form-color">{footer.contactLabel}</div>
+      <a href={`mailto:${contacts.email}`} class="_18px-neue white black">{contacts.email}</a>
+      <a href={phoneHref} class="_18px-neue white black">{contacts.phone}</a>
+    </div>
+    <div class="w-layout-vflex footer-contact">
+      <div class="_18px-neue _40 form-color">{footer.addressLabel}</div>
+      <div class="_18px-neue white _188px black">{contacts.address}</div>
+    </div>
+  </div>
+  <button type="button" class="menu-mobile absolute" data-menu-close>
+    <span class="_18px-fomula black">{header.closeButton}</span>
+  </button>
+</section>
+
+<style is:global>
+  .menu-mob { z-index: 10; display: none; position: fixed; inset: 0; }
+
+  @media screen and (max-width: 479px) {
+    .menu-mob { background-color: var(--color-orange); flex-flow: column; justify-content: space-between; align-items: stretch; width: 100%; height: 100%; padding: var(--space-20); position: fixed; inset: 0%; }
+    .bullits-mob { grid-column-gap: var(--space-10); grid-row-gap: var(--space-10); }
+    ._50px-formula { color: var(--color-black); font-family: var(--font-formula); font-size: var(--text-50); font-weight: 400; line-height: 1; text-decoration: none; }
+    .contact-menu { grid-column-gap: 2.125em; grid-row-gap: 2.125em; }
+  }
+</style>

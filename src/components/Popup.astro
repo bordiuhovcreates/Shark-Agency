@@ -1,0 +1,37 @@
+---
+// Попап з формою: помаранчева панель виїжджає справа з поворотом.
+// Відкривається будь-якою кнопкою з атрибутом data-popup-open.
+import LeadForm from './LeadForm.astro';
+import home from '../content/home.json';
+import { url } from '../lib/url';
+---
+<section class="form" data-popup role="dialog" aria-modal="true" aria-label={home.form.title}>
+  <div class="w-layout-vflex form-container" data-popup-box>
+    <div class="w-layout-hflex high-form">
+      <h2 class="_160-formula-h">{home.form.title}</h2>
+      <button type="button" class="close-form" data-popup-close aria-label="Close">
+        <img src={url('images/close.svg')} loading="lazy" width="32" height="32" alt="" class="close-icon" />
+      </button>
+    </div>
+    <LeadForm service="Popup" />
+  </div>
+  <button type="button" class="close-form-button" data-popup-close aria-label="Close"></button>
+</section>
+
+<style is:global>
+  .form { z-index: 11; background-image: linear-gradient(var(--color-black-60), var(--color-black-60)); justify-content: flex-end; align-items: flex-start; display: none; position: fixed; inset: 0%; }
+  .form-container { background-color: var(--color-orange); justify-content: space-between; width: 60em; height: 100%; padding: var(--space-40); font-weight: 400; display: flex; transform: translateX(100%) rotate(10deg); }
+  .high-form { justify-content: space-between; width: 100%; }
+  ._160-formula-h { width: 4.3875em; color: var(--color-black); margin-top: 0; margin-bottom: 0; font-family: var(--font-formula); font-size: var(--text-160); font-weight: 400; line-height: 1; }
+  .close-form { background-color: var(--color-black); cursor: pointer; border-radius: var(--radius-3); justify-content: center; align-items: center; width: 3.75em; height: 3.75em; display: flex; position: static; }
+  .close-icon { width: 2em; height: 2em; }
+  .close-form-button { background-color: var(--color-transparent); width: 50%; height: 100%; position: absolute; inset: auto auto 0% 0%; }
+
+  @media screen and (max-width: 479px) {
+    .form-container { width: 100%; padding: var(--space-20); display: flex; }
+    ._160-formula-h { font-size: var(--text-60); }
+    .close-form { width: 2.375em; height: 2.375em; }
+    .close-icon { width: 1.25em; height: 1.25em; }
+    .close-form-button { display: none; }
+  }
+</style>

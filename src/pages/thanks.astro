@@ -1,0 +1,18 @@
+---
+import Base from '../layouts/Base.astro';
+import home from '../content/home.json';
+import { url } from '../lib/url';
+const { thanks } = home;
+---
+<Base title={thanks.title} noindex>
+  <main class="utility-page">
+    <h1 class="heading-110px">{thanks.title}</h1>
+    <p class="_18px-neue white">{thanks.text}</p>
+    <a class="_18px-neue white foot" href={url('/')}>{thanks.button}</a>
+  </main>
+</Base>
+
+<style is:global>
+  .utility-page { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: var(--space-30); padding: var(--space-40); text-align: center; }
+  .utility-page p { margin: 0; }
+</style>

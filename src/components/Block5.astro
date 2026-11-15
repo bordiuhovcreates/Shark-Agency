@@ -1,0 +1,57 @@
+---
+// Блок 5 — команда: заголовок прилипає по центру, картки-фото «драбинкою», розмиття зникає при скролі.
+import home from '../content/home.json';
+import { url } from '../lib/url';
+
+const { team } = home;
+// Проміжки скролу (у % сцени), на яких кожна картка стає чіткою
+const unblur = [[23, 39], [31, 48], [40, 57], [48, 66], [58, 76], [67, 78]];
+---
+<section id="team" class="section-05" data-scene>
+  <div class="w-layout-vflex text-vertical-05">
+    <div class="_18px-neue orange _116px-h">{team.eyebrow}</div>
+    <h2 class="_260px-formula">{team.title}</h2>
+    <div class="w-layout-vflex small-text-05">
+      <div class="_30px-formula _555px">{team.lead}</div>
+      <div class="_18px-neue _40 _400px">{team.text}</div>
+    </div>
+  </div>
+  <div class="w-layout-grid grid">
+    {team.members.map((m, i) => (
+      <div
+        class={`w-layout-vflex team-card _${(i % 6) + 1}`}
+        style={`background-image: url('${url(m.photo)}')`}
+        data-scrub-unblur={unblur[i % 6].join(' ')}
+      >
+        <div class="_30px-formula white _18px-mob">{m.name}</div>
+        <div class="_18px-neue white">{m.role}</div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style is:global>
+  .section-05 { width: 100%; margin-top: var(--space-240); }
+  .text-vertical-05 { justify-content: space-between; align-items: center; width: 100%; height: 100svh; padding-top: var(--space-40); padding-bottom: var(--space-40); position: sticky; top: 0; }
+  .text-vertical-05 h2 { margin: 20px 0 10px; }
+  .small-text-05 { grid-column-gap: var(--space-20); grid-row-gap: var(--space-20); align-items: center; }
+  .grid { grid-column-gap: var(--space-100); grid-row-gap: var(--space-100); grid-template-rows: auto; grid-auto-rows: auto; grid-template-columns: 1fr; padding-bottom: var(--space-40); position: relative; }
+  .team-card { background-position: 50%; background-size: cover; border-radius: var(--radius-5); justify-content: space-between; width: 27.8125em; height: 37.5em; margin-left: 12.1875em; padding-top: var(--space-20); padding-bottom: var(--space-20); padding-left: var(--space-20); }
+  .team-card._2 { margin-left: 0; margin-right: var(--space-40); justify-self: end; }
+  .team-card._3 { margin-left: 0; margin-right: 31.5625em; justify-self: end; }
+  .team-card._4 { justify-self: end; }
+  .team-card._5 { margin-left: 0; margin-right: var(--space-40); justify-self: end; }
+  .team-card._6 { margin-left: 12.1875em; justify-self: start; }
+
+  @media screen and (max-width: 479px) {
+    .section-05 { margin-top: var(--space-100); overflow: clip; }
+    .text-vertical-05 { padding-top: var(--space-20); padding-bottom: var(--space-20); }
+    .grid { grid-template-columns: 100%; padding-bottom: var(--space-20); }
+    .team-card { width: 10.625em; height: 14.375em; margin-left: var(--space-20); padding-top: var(--space-10); padding-bottom: var(--space-10); padding-left: var(--space-10); }
+    .team-card._2 { margin-right: var(--space-20); }
+    .team-card._3 { margin-left: var(--space-20); margin-right: 0; justify-self: start; }
+    .team-card._4 { margin-left: 0; margin-right: var(--space-20); justify-self: end; }
+    .team-card._5 { margin-left: var(--space-20); margin-right: 0; justify-self: start; }
+    .team-card._6 { margin-left: 0; margin-right: var(--space-20); justify-self: end; }
+  }
+</style>

@@ -1,0 +1,33 @@
+---
+// Кнопка «Contact Us» зі стрілкою. Відкриває попап з формою.
+// variant: orange (за замовчуванням) | white | black (у мобільному меню)
+import { url } from '../lib/url';
+
+interface Props {
+  label: string;
+  service: string; // назва форми, потрапляє в заявку
+  variant?: 'orange' | 'white' | 'black';
+  class?: string;
+}
+const { label, service, variant = 'orange', class: cls = '' } = Astro.props;
+const isBlack = variant === 'black';
+---
+<button
+  type="button"
+  class:list={['w-layout-hflex', 'button-main', { 'is-white': variant === 'white' }, cls]}
+  data-popup-open={service}
+>
+  <span class:list={['left-site-button', { white: variant === 'white', black: isBlack }]}>
+    {isBlack ? (
+      <span class="_22px-formula orange">{label}</span>
+    ) : (
+      <span class="w-layout-vflex button-anim">
+        <span class="_22px-formula">{label}</span>
+        <span class="_22px-formula" aria-hidden="true">{label}</span>
+      </span>
+    )}
+  </span>
+  <span class:list={['arrow', { 'black-border': isBlack }]}>
+    <img src={url('images/arrow.svg')} loading="lazy" width="30" height="30" alt="" class:list={['arrow-icon', { filter: isBlack }]} />
+  </span>
+</button>

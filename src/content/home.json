@@ -1,0 +1,114 @@
+{
+  "hero": {
+    "tagLeft": "MARKETING",
+    "tagRight": "AGENCY",
+    "titleLeft": "Shark",
+    "titleRight": "Scale",
+    "text": "We don’t chase trends — we build strategies that put brands ahead of the competition and keep them there.",
+    "button": "Contact Us",
+    "scrollHint": "SCROLL TO EXPLORE",
+    "lottie": "/lottie/main.json"
+  },
+  "statement": {
+    "text": "The difference between an ordinary brand and an extraordinary one is never luck - it’s strategy."
+  },
+  "performance": {
+    "title": "Performance snapshot",
+    "stats": [
+      { "label": "Ad impressions delivered worldwide.", "value": "1.2B+" },
+      { "label": "Qualified impressions generated every month.", "value": "500M" },
+      { "label": "Client satisfaction rate across completed projects.", "value": "97%" }
+    ],
+    "teamText": "Dedicated experts behind every strategy, campaign, and result.",
+    "avatars": [
+      { "image": "/images/avatar-1.avif" },
+      { "image": "/images/avatar-2.avif" },
+      { "image": "/images/avatar-3.avif" },
+      { "image": "/images/avatar-4.avif" },
+      { "image": "/images/avatar-5.avif" },
+      { "image": "/images/avatar-6.avif" },
+      { "image": "/images/avatar-7.avif" },
+      { "image": "/images/avatar-8.avif" },
+      { "image": "/images/avatar-9.avif" }
+    ]
+  },
+  "services": [
+    {
+      "title": "Brand Strategy",
+      "text": "Developing clear marketing strategies and actionable roadmaps tailored to your business goals.",
+      "image": "/images/service-1.avif"
+    },
+    {
+      "title": "Paid Media",
+      "text": "Creating and optimizing high-performance advertising campaigns across the channels that matter most.",
+      "image": "/images/service-2.avif"
+    },
+    {
+      "title": "Creative production",
+      "text": "Designing compelling visuals and content that capture attention and strengthen your brand.",
+      "image": "/images/service-3.avif"
+    },
+    {
+      "title": "Marketing Analytics",
+      "text": "Tracking performance, uncovering insights, and turning data into smarter marketing decisions.",
+      "image": "/images/service-4.avif"
+    }
+  ],
+  "team": {
+    "eyebrow": "[ Meet the sharks ]",
+    "title": "Our Lineup",
+    "lead": "Meet the people behind every strategy, campaign, and creative decision that helps our clients grow.",
+    "text": "A team of designers, strategists, and innovators shaping ideas into impactful digital experiences.",
+    "members": [
+      { "name": "Ethan Carter", "role": "Founder & CEO", "photo": "/images/team-1.avif" },
+      { "name": "Daniel Brooks", "role": "Marketing Lead", "photo": "/images/team-2.avif" },
+      { "name": "Sophia Bennett", "role": "Strategy Director", "photo": "/images/team-3.avif" },
+      { "name": "Olivia Hayes", "role": "Brand Strategist", "photo": "/images/team-4.avif" },
+      { "name": "Liam Foster", "role": "Paid Media Specialist", "photo": "/images/team-5.avif" },
+      { "name": "Logan Murphy", "role": "Creative Producer", "photo": "/images/team-6.avif" }
+    ]
+  },
+  "cta": {
+    "eyebrow": "Let’s build your next growth story.",
+    "title": "Ready to swim with sharks?",
+    "button": "Contact Us",
+    "text": "Big ideas deserve bold execution. Let’s create a website that makes your brand impossible to ignore.",
+    "image": "/images/cta-bg.avif"
+  },
+  "faq": {
+    "title": "Questions",
+    "button": "Contact Us",
+    "items": [
+      { "question": "What services does Shark provide?", "answer": "We provide paid advertising, strategy, creative production, analytics, and campaign optimization." },
+      { "question": "Which platforms do you work with?", "answer": "We work with Meta, Google, TikTok, LinkedIn, and other major advertising platforms." },
+      { "question": "Do you work with startups or established businesses?", "answer": "We partner with both startups and established companies, tailoring strategies to their goals." },
+      { "question": "How do you measure success?", "answer": "We track KPIs like ROAS, CPA, conversions, revenue, and sustainable business growth." },
+      { "question": "How long does it take to see results?", "answer": "Most campaigns show initial results within a few weeks, depending on your industry and budget." },
+      { "question": "Do I need a large advertising budget?", "answer": "Not necessarily. We build strategies that make the most of your available budget." },
+      { "question": "Will I have access to my advertising accounts?", "answer": "Yes. You always retain full ownership and access to your advertising accounts." },
+      { "question": "How often will I receive reports?", "answer": "We provide regular performance reports with clear insights and actionable recommendations." },
+      { "question": "Can you improve our existing campaigns?", "answer": "Absolutely. We audit, optimize, and scale existing campaigns to improve performance." },
+      { "question": "Do you create ad creatives?", "answer": "Yes. We create high-performing ad creatives designed for your audience and goals." },
+      { "question": "What makes Shark different from other agencies?", "answer": "We combine strategy, creativity, and data to deliver measurable, long-term growth." },
+      { "question": "How do we get started?", "answer": "Book a discovery call, and we’ll discuss your goals, challenges, and growth opportunities." }
+    ]
+  },
+  "form": {
+    "title": "Let’s build together",
+    "nameLabel": "Name *",
+    "namePlaceholder": "Alexandr Sevchuk",
+    "emailLabel": "Mail *",
+    "emailPlaceholder": "hellosharks@info.oi",
+    "phoneLabel": "Phone number *",
+    "phonePlaceholder": "+38(098)-999-99-99",
+    "button": "Submit",
+    "wait": "Please wait...",
+    "success": "Thank you! Your submission has been received!",
+    "error": "Oops! Something went wrong while submitting the form."
+  },
+  "thanks": {
+    "title": "Thank you!",
+    "text": "Your submission has been received!",
+    "button": "Back to home"
+  }
+}

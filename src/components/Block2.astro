@@ -1,0 +1,27 @@
+---
+// Блок 2 — велика фраза: слова проявляються по черзі при скролі, помаранчева смуга розтягується.
+import home from '../content/home.json';
+import { words } from '../lib/words';
+
+const { statement } = home;
+---
+<div class="wrapper-anim-2" data-scene>
+  <section class="section-02" id="block-2">
+    <p class="_110px---formula" data-scrub-words="36 2 2">
+      {words(statement.text).map((w, i) => <>{i > 0 && ' '}<span>{w}</span></>)}
+    </p>
+    <div class="orange-bg" data-scrub-width="32 78"></div>
+  </section>
+</div>
+
+<style is:global>
+  .wrapper-anim-2 { z-index: 3; pointer-events: auto; height: 3000px; position: relative; }
+  .section-02 { justify-content: center; align-items: center; width: 100%; height: 100svh; margin-top: var(--space-190); display: flex; position: sticky; top: 0; }
+  .section-02 ._110px---formula { margin: 0; }
+  .orange-bg { z-index: 1; background-color: var(--color-orange); width: 15em; height: 100%; position: absolute; inset: 0% auto 0% 0%; }
+
+  @media screen and (max-width: 479px) {
+    .section-02 { margin-top: var(--space-100); overflow: clip; }
+    .orange-bg { width: 2em; }
+  }
+</style>

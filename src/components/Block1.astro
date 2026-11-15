@@ -1,0 +1,52 @@
+---
+// Блок 1 — перший екран: Lottie-акула поверх, шапка, «Shark Scale», опис і кнопка.
+// Lottie прокручується разом зі скролом (сцена — обгортка <main> в index.astro).
+import home from '../content/home.json';
+import { url } from '../lib/url';
+import Header from './Header.astro';
+import ContactButton from './ContactButton.astro';
+
+const { hero } = home;
+---
+<div class="lottie-main" aria-hidden="true">
+  <div class="lottie-sec-1" data-lottie={url(hero.lottie)} data-scrub-lottie="10 75"></div>
+</div>
+<div class="wrapper-1-sec">
+  <section class="section-01" id="block-1">
+    <Header />
+    <div class="w-layout-vflex desc-heading">
+      <div class="w-layout-hflex desc">
+        <div class="_18px-fomula orange">{hero.tagLeft}</div>
+        <div class="_18px-fomula orange">{hero.tagRight}</div>
+      </div>
+      <div class="w-layout-hflex headings">
+        <h1 class="heading-260px">{hero.titleLeft}</h1>
+        <h1 class="heading-260px">{hero.titleRight}</h1>
+      </div>
+    </div>
+    <div class="w-layout-vflex text-button">
+      <div class="_18px-neue _40 _100--mob">{hero.text}</div>
+      <ContactButton label={hero.button} service="Hero" />
+      <div class="_18px-fomula _30">{hero.scrollHint}</div>
+    </div>
+  </section>
+</div>
+
+<style is:global>
+  .lottie-main { z-index: 2; pointer-events: none; width: 100%; height: 100svh; position: sticky; top: 0; }
+  .lottie-sec-1 { pointer-events: none; width: 100%; overflow: visible; }
+  .wrapper-1-sec { z-index: 1; pointer-events: auto; width: 100%; height: 4300px; margin-top: -100svh; position: relative; }
+  .section-01 { z-index: 10; background-color: var(--color-black); color: var(--color-white); border: 1px solid var(--color-black); border-radius: 0; width: 100%; height: 100svh; padding: var(--space-40); font-family: Arial, Helvetica Neue, Helvetica, sans-serif; position: sticky; top: 0; }
+  .desc-heading { grid-column-gap: var(--space-40); grid-row-gap: var(--space-40); margin-top: 15.375em; }
+  .desc, .headings { justify-content: space-between; width: 100%; }
+  .heading-260px { color: var(--color-white); margin-top: 0; margin-bottom: 0; font-family: var(--font-formula); font-size: var(--text-260); font-weight: 400; line-height: 1; }
+  .text-button { grid-column-gap: var(--space-30); grid-row-gap: var(--space-30); align-items: center; width: 100%; position: absolute; inset: auto 0% var(--space-40); }
+
+  @media screen and (max-width: 479px) {
+    .section-01 { padding: var(--space-20); font-size: var(--scale-mob); overflow: clip; }
+    .desc-heading { grid-column-gap: var(--space-20); grid-row-gap: var(--space-20); margin-top: 5.125em; }
+    .heading-260px { font-size: var(--text-70); }
+    .text-button { bottom: var(--space-20); }
+    .lottie-sec-1 { width: 100em; height: 100svh; margin-left: -37.6em; }
+  }
+</style>

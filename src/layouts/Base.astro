@@ -1,0 +1,72 @@
+---
+import '../styles/global.css';
+import settings from '../content/settings.json';
+import home from '../content/home.json';
+import { url } from '../lib/url';
+
+interface Props {
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+}
+
+const { title = settings.seo.title, description = settings.seo.description, noindex = false } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const abs = (path: string) => new URL(url(path), Astro.site).href;
+const ogImage = settings.seo.ogImage ? abs(settings.seo.ogImage) : '';
+
+// Дані про компанію для пошукових систем (schema.org)
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: settings.seo.title,
+  alternateName: settings.seo.alternateName,
+  description: settings.seo.description,
+  url: abs('/'),
+  logo: { '@type': 'ImageObject', url: abs(settings.header.logo) },
+  foundingDate: settings.seo.foundingDate,
+  email: settings.contacts.email,
+  telephone: settings.contacts.phone,
+  address: { '@type': 'PostalAddress', streetAddress: settings.contacts.address },
+  sameAs: settings.social.map((s) => s.href).filter((h) => /^https?:/.test(h)),
+  employee: home.team.members.map((m) => ({ '@type': 'Person', name: m.name, jobTitle: m.role })),
+};
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
+
+    <!-- Картинка й опис, коли посилання на сайт надсилають у месенджер чи соцмережу -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <link rel="icon" type="image/png" sizes="32x32" href={url('images/favicon-32.png')} />
+    <link rel="icon" type="image/png" sizes="48x48" href={url('images/favicon-48.png')} />
+    <link rel="icon" type="image/png" sizes="192x192" href={url('images/icon-192.png')} />
+    <link rel="icon" type="image/png" sizes="512x512" href={url('images/icon-512.png')} />
+    <link rel="apple-touch-icon" href={url('images/apple-touch-icon.png')} />
+    <meta name="theme-color" content="#000000" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    <slot name="head" />
+  </head>
+  <body>
+    <slot />
+    <script>
+      import '../scripts/animations.js';
+      import '../scripts/interactive.js';
+    </script>
+  </body>
+</html>

@@ -1,0 +1,73 @@
+/*
+  Змінні проєкту Shark Agency (перенесено з Webflow).
+  Увесь сайт масштабується від ширини екрана: 1em = 16px на макеті 1920px (десктоп)
+  і на макеті 390px (мобільний). Розміри тексту й відступи — в em, назва змінної = px макета.
+*/
+:root {
+  /* Кольори */
+  --color-black: #000;
+  --color-white: #fff;
+  --color-orange: #f7481b;
+  --color-white-60: #fff9;
+  --color-white-40: #fff6;
+  --color-white-30: #ffffff4d;
+  --color-white-20: #fff3;
+  --color-white-5: #ffffff0d;
+  --color-black-60: #0009;
+  --color-black-40: #0006;
+  --color-black-30: #0000004d;
+  --color-transparent: #0000;
+
+  /* Шрифти */
+  --font-formula: Ppformula, Georgia, sans-serif;
+  --font-neue: Ppneuemontreal, Arial, sans-serif;
+
+  /* Масштаб сторінки (базовий розмір шрифту body) */
+  --scale: 0.833vw;
+  --scale-mob: 4.103vw;
+
+  /* Розміри тексту */
+  --text-260: 16.25em;
+  --text-160: 10em;
+  --text-140: 8.75em;
+  --text-110: 6.875em;
+  --text-70: 4.375em;
+  --text-60: 3.75em;
+  --text-50: 3.125em;
+  --text-44: 2.75em;
+  --text-40: 2.5em;
+  --text-30: 1.875em;
+  --text-24: 1.5em;
+  --text-22: 1.375em;
+  --text-18: 1.125em;
+  --text-16: 1em;
+  --text-14: 0.875em;
+  --text-12: 0.75em;
+
+  /* Відступи */
+  --space-10: 0.625em;
+  --space-20: 1.25em;
+  --space-30: 1.875em;
+  --space-40: 2.5em;
+  --space-50: 3.125em;
+  --space-60: 3.75em;
+  --space-100: 6.25em;
+  --space-190: 11.875em;
+  --space-240: 15em;
+
+  /* Радіуси */
+  --radius-2: 0.125em;
+  --radius-3: 0.1875em;
+  --radius-5: 0.3125em;
+  --radius-10: 0.625em;
+
+  /* Лінії */
+  --line-dotted: 1px dotted var(--color-white-30);
+
+  /* Розмиття */
+  --blur-glass: 30px;
+
+  /* Анімації */
+  --duration: 0.5s;
+  --duration-slow: 1s;
+}

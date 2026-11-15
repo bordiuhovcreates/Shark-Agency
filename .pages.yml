@@ -1,0 +1,336 @@
+# Налаштування адмінки Pages CMS (app.pagescms.org)
+# Тут описано, що клієнт може редагувати. Додаєте новий блок на сайт —
+# попросіть Claude додати його поля і сюди.
+
+media:
+  input: public/images
+  output: /images
+content:
+- name: settings
+  label: Налаштування сайту
+  type: file
+  path: src/content/settings.json
+  format: json
+  fields:
+  - name: seo
+    label: SEO
+    type: object
+    fields:
+    - name: title
+      label: Назва сайту / заголовок сторінки
+      type: string
+    - name: description
+      label: Опис для пошуку
+      type: text
+    - name: ogImage
+      label: Картинка для соцмереж (1200×630)
+      type: image
+    - name: alternateName
+      label: Коротка назва компанії
+      type: string
+    - name: foundingDate
+      label: Дата заснування (РРРР-ММ-ДД)
+      type: string
+  - name: header
+    label: Шапка
+    type: object
+    fields:
+    - name: logo
+      label: Логотип
+      type: image
+    - name: button
+      label: Текст кнопки заявки
+      type: string
+    - name: menuButton
+      label: Текст кнопки меню (мобільна версія)
+      type: string
+    - name: closeButton
+      label: Текст кнопки закриття меню
+      type: string
+    - name: nav
+      label: Пункти меню
+      type: object
+      list: true
+      fields:
+      - name: label
+        label: Назва
+        type: string
+      - name: href
+        label: 'Посилання на блок: #about, #service, #team, #faq'
+        type: string
+  - name: contacts
+    label: Контакти
+    type: object
+    fields:
+    - name: email
+      label: Email
+      type: string
+    - name: phone
+      label: Телефон
+      type: string
+    - name: address
+      label: Адреса
+      type: text
+  - name: social
+    label: Соцмережі (у підвалі)
+    type: object
+    list: true
+    fields:
+    - name: label
+      label: Назва
+      type: string
+    - name: href
+      label: Посилання (порожнє — просто текст)
+      type: string
+  - name: legal
+    label: Юридичні посилання (у підвалі)
+    type: object
+    list: true
+    fields:
+    - name: label
+      label: Назва
+      type: string
+    - name: href
+      label: Посилання (порожнє — просто текст)
+      type: string
+  - name: footer
+    label: Підвал
+    type: object
+    fields:
+    - name: since
+      label: Рік заснування (під email)
+      type: string
+    - name: clock
+      label: Текст праворуч угорі
+      type: string
+    - name: cta
+      label: Заклик над email
+      type: string
+    - name: contactLabel
+      label: Підпис колонки контактів
+      type: string
+    - name: addressLabel
+      label: Підпис колонки адреси
+      type: string
+    - name: socialLabel
+      label: Підпис колонки соцмереж
+      type: string
+    - name: legalLabel
+      label: Підпис юридичної колонки
+      type: string
+    - name: rights
+      label: Текст «Усі права захищені»
+      type: string
+    - name: year
+      label: Рік
+      type: string
+    - name: copyright
+      label: Копірайт
+      type: string
+    - name: credit
+      label: Автор сайту
+      type: string
+  - name: scrollIndicator
+    label: Підпис унизу ліворуч (індикатор скролу)
+    type: string
+- name: home
+  label: Головна сторінка
+  type: file
+  path: src/content/home.json
+  format: json
+  fields:
+  - name: hero
+    label: Перший екран
+    type: object
+    fields:
+    - name: tagLeft
+      label: Мітка ліворуч
+      type: string
+    - name: tagRight
+      label: Мітка праворуч
+      type: string
+    - name: titleLeft
+      label: Заголовок — ліве слово
+      type: string
+    - name: titleRight
+      label: Заголовок — праве слово
+      type: string
+    - name: text
+      label: Опис
+      type: text
+    - name: button
+      label: Текст кнопки
+      type: string
+    - name: scrollHint
+      label: Підказка «гортайте»
+      type: string
+  - name: statement
+    label: Велика фраза (блок 2)
+    type: object
+    fields:
+    - name: text
+      label: Текст фрази
+      type: text
+  - name: performance
+    label: Цифри (блок 3)
+    type: object
+    fields:
+    - name: title
+      label: Заголовок
+      type: string
+    - name: stats
+      label: Показники
+      type: object
+      list: true
+      fields:
+      - name: value
+        label: Число (наприклад 1.2B+)
+        type: string
+      - name: label
+        label: Підпис
+        type: text
+    - name: teamText
+      label: Текст біля аватарок
+      type: text
+    - name: avatars
+      label: Аватарки команди (9 шт., квадрат 270×270)
+      type: object
+      list: true
+      fields:
+      - name: image
+        label: Фото
+        type: image
+  - name: services
+    label: Послуги (блок 4)
+    type: object
+    list: true
+    fields:
+    - name: title
+      label: Назва
+      type: string
+    - name: text
+      label: Опис
+      type: text
+    - name: image
+      label: Фото (1260×1290)
+      type: image
+  - name: team
+    label: Команда (блок 5)
+    type: object
+    fields:
+    - name: eyebrow
+      label: Надзаголовок
+      type: string
+    - name: title
+      label: Заголовок
+      type: string
+    - name: lead
+      label: Великий текст
+      type: text
+    - name: text
+      label: Малий текст
+      type: text
+    - name: members
+      label: Учасники
+      type: object
+      list: true
+      fields:
+      - name: name
+        label: Ім'я
+        type: string
+      - name: role
+        label: Посада
+        type: string
+      - name: photo
+        label: Фото (вертикальне, 668×900)
+        type: image
+  - name: cta
+    label: Заклик (блок 6)
+    type: object
+    fields:
+    - name: eyebrow
+      label: Надзаголовок
+      type: string
+    - name: title
+      label: Заголовок
+      type: string
+    - name: button
+      label: Текст кнопки
+      type: string
+    - name: text
+      label: Текст унизу
+      type: text
+    - name: image
+      label: Фонове фото
+      type: image
+  - name: faq
+    label: Питання (блок 7)
+    type: object
+    fields:
+    - name: title
+      label: Заголовок
+      type: string
+    - name: button
+      label: Текст кнопки
+      type: string
+    - name: items
+      label: Питання та відповіді
+      type: object
+      list: true
+      fields:
+      - name: question
+        label: Питання
+        type: string
+      - name: answer
+        label: Відповідь
+        type: text
+  - name: form
+    label: Форма заявки (попап)
+    type: object
+    fields:
+    - name: title
+      label: Заголовок
+      type: string
+    - name: nameLabel
+      label: Підпис поля «Ім'я»
+      type: string
+    - name: namePlaceholder
+      label: Підказка в полі «Ім'я»
+      type: string
+    - name: emailLabel
+      label: Підпис поля «Email»
+      type: string
+    - name: emailPlaceholder
+      label: Підказка в полі «Email»
+      type: string
+    - name: phoneLabel
+      label: Підпис поля «Телефон»
+      type: string
+    - name: phonePlaceholder
+      label: Підказка в полі «Телефон»
+      type: string
+    - name: button
+      label: Текст кнопки
+      type: string
+    - name: wait
+      label: Текст кнопки під час надсилання
+      type: string
+    - name: success
+      label: Повідомлення після надсилання
+      type: text
+    - name: error
+      label: Повідомлення про помилку
+      type: text
+  - name: thanks
+    label: Сторінка подяки
+    type: object
+    fields:
+    - name: title
+      label: Заголовок
+      type: string
+    - name: text
+      label: Текст
+      type: text
+    - name: button
+      label: Текст посилання
+      type: string

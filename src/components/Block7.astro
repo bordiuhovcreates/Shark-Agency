@@ -1,0 +1,83 @@
+---
+// Блок 7 — питання (FAQ): заголовок прилипає зліва, акордеон справа, кнопка Contact Us унизу ліворуч.
+import home from '../content/home.json';
+import { url } from '../lib/url';
+import ContactButton from './ContactButton.astro';
+
+const { faq } = home;
+const count = String(faq.items.length);
+// Додаткова ширина довгих питань на мобільному — як у макеті
+const questionMods: Record<number, string> = { 2: '_185px-m', 6: '_203px-m', 10: '_199px-m' };
+---
+<section id="faq" class="section-07" data-scene>
+  <div class="w-layout-hflex mob-faq">
+    <h2 class="heading-110px _110px-h" data-scrub-reveal="11 24">{faq.title}</h2>
+    <div class="_110px---formula auto mob">{count}</div>
+  </div>
+  <div class="w-layout-vflex faq-container">
+    <div class="_110px---formula auto pc" data-scrub-reveal="13 26">{count}</div>
+    <div class="w-layout-vflex faqs">
+      {faq.items.map((item, i) => (
+        <div class="faq" data-faq>
+          <button type="button" class="quastion" data-faq-toggle aria-expanded="false" aria-controls={`faq-answer-${i + 1}`}>
+            <span class="w-layout-hflex f-q">
+              <span class={`_30px-formula white _18px-mob ${questionMods[i] || ''}`}>{item.question}</span>
+              <span class="faq-icon">
+                <img src={url('images/plus.svg')} loading="lazy" width="24" height="24" alt="" class="icon" />
+              </span>
+            </span>
+          </button>
+          <div class="answer" id={`faq-answer-${i + 1}`} data-faq-panel>
+            <div class="ans">
+              <div class={`_18px-neue _60 _${(i % 12) + 1}`}>{item.answer}</div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+  <ContactButton label={faq.button} service="FAQ" class="abs" />
+</section>
+
+<style is:global>
+  .section-07 { z-index: 1; justify-content: space-between; width: 100%; height: auto; margin-top: var(--space-240); padding-top: var(--space-40); padding-left: var(--space-40); padding-right: var(--space-40); display: flex; position: relative; }
+  .section-07 h2 { font-weight: 400; }
+  .button-main.abs { position: absolute; inset: auto auto 0% var(--space-40); }
+  .faq-container { grid-column-gap: var(--space-30); grid-row-gap: var(--space-30); width: 56.875em; }
+  .faqs { grid-column-gap: var(--space-30); grid-row-gap: var(--space-30); width: 100%; }
+  .faq { width: 100%; text-align: left; position: relative; }
+  .faq:last-child { border-bottom: var(--line-dotted); padding-bottom: var(--space-30); }
+  .quastion { width: 100%; padding: 0; display: block; cursor: pointer; user-select: none; white-space: nowrap; text-align: left; }
+  .answer { background-color: var(--color-black); flex-flow: column; display: flex; position: relative; overflow: hidden; height: 0; transition: height .3s ease; }
+  .f-q { border-top: var(--line-dotted); justify-content: space-between; align-items: center; width: 100%; padding-top: var(--space-30); }
+  .faq-icon { border: var(--line-dotted); background-color: var(--color-black); border-radius: 2px; justify-content: center; align-items: center; width: 3em; height: 3em; display: flex; transition: background-color .4s, border-color .4s; }
+  .icon { width: 1.5em; height: 1.5em; transition: transform .4s, filter .4s; }
+  .faq.is-open .faq-icon { background-color: var(--color-orange); border: 1px dotted var(--color-orange); }
+  .faq.is-open .icon { transform: rotate(45deg); filter: invert(100%); }
+  .ans { padding-top: 1.3125em; }
+  ._18px-neue._60._3, ._18px-neue._60._4, ._18px-neue._60._5, ._18px-neue._60._6, ._18px-neue._60._7, ._18px-neue._60._8, ._18px-neue._60._9, ._18px-neue._60._10, ._18px-neue._60._11, ._18px-neue._60._12 { width: auto; }
+
+  @media screen and (max-width: 479px) {
+    .section-07 { flex-flow: column; margin-top: var(--space-100); padding-left: var(--space-20); padding-right: var(--space-20); overflow: clip; }
+    .button-main.abs { display: none; }
+    .faq-container { grid-column-gap: 0em; grid-row-gap: 0em; width: 21.875em; margin-top: var(--space-50); }
+    .faqs { grid-column-gap: var(--space-20); grid-row-gap: var(--space-20); }
+    .faq:last-child { padding-bottom: var(--space-20); }
+    .quastion { white-space: pre-wrap; }
+    .f-q { padding-top: var(--space-20); }
+    .faq-icon { width: 2.125em; height: 2.125em; }
+    .icon { width: 1.125em; height: 1.125em; }
+    .mob-faq { justify-content: space-between; }
+    ._18px-neue._60._1 { width: 25em; line-height: 1.2; }
+    ._18px-neue._60._2 { width: 20em; line-height: 1.2; }
+    ._18px-neue._60._3 { width: 21em; line-height: 1.2; }
+    ._18px-neue._60._4 { width: 20em; line-height: 1.2; }
+    ._18px-neue._60._5 { width: 22em; line-height: 1.2; }
+    ._18px-neue._60._6 { width: 20em; line-height: 1.2; }
+    ._18px-neue._60._7 { width: 18em; }
+    ._18px-neue._60._8, ._18px-neue._60._9 { width: 21em; line-height: 1.2; }
+    ._18px-neue._60._10 { width: 20em; line-height: 1.2; }
+    ._18px-neue._60._11 { width: 18em; }
+    ._18px-neue._60._12 { width: 20em; }
+  }
+</style>
