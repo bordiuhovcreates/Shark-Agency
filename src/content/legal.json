@@ -1,0 +1,124 @@
+{
+  "common": {
+    "eyebrow": "[ Legal ]",
+    "updatedLabel": "Last updated",
+    "backLabel": "Back to home",
+    "contactLabel": "Contact",
+    "addressLabel": "Address",
+    "otherLabel": "Also read"
+  },
+  "privacy": {
+    "metaTitle": "Privacy Policy — Shark Scale Agency",
+    "metaDescription": "How Shark Scale Agency collects, uses and protects the personal information you share with us.",
+    "title": "Privacy Policy",
+    "updated": "November 15, 2026",
+    "intro": "Your privacy matters to us. This policy explains what personal information we collect through this website, why we collect it, and the choices you have.",
+    "sections": [
+      {
+        "title": "Who we are",
+        "text": "This website is operated by Shark Scale Agency (“Shark”, “we”, “us”), a marketing agency based in Montréal, Québec, Canada.\n\nWe are responsible for the personal information collected through this website. You can reach us at any time using the contact details at the bottom of this page."
+      },
+      {
+        "title": "Information we collect",
+        "text": "Information you give us. When you send a request through our contact form, we collect:\n\n- your name\n- your email address\n- your phone number\n- the form you used and the page you submitted it from\n\nInformation collected automatically. Like most websites, our hosting provider may process technical data your browser sends when you visit, such as your IP address, browser type, device type and the pages you request. We use it only to deliver the site and keep it secure.\n\nWe do not ask for payment details, government identifiers or other sensitive information through this website."
+      },
+      {
+        "title": "How we use your information",
+        "text": "We use the information you send us to:\n\n- reply to your request and discuss a possible project\n- prepare proposals and follow up on our conversation\n- keep records of our communication\n- protect the website and comply with legal obligations\n\nWe do not sell your personal information, and we do not use it for automated decision-making."
+      },
+      {
+        "title": "How form submissions are delivered",
+        "text": "Messages sent through our contact form are passed to a third-party form-delivery service, which forwards them to our email inbox. That service processes your submission only to deliver it to us, and it applies its own privacy practices.\n\nPlease do not include confidential or sensitive information in the form."
+      },
+      {
+        "title": "Cookies and analytics",
+        "text": "At the time of writing, this website does not use advertising or tracking cookies, and its fonts, images and animations are served from the site itself.\n\nIf we add analytics or marketing tools in the future, we will update this policy and, where the law requires it, ask for your consent first."
+      },
+      {
+        "title": "Who we share it with",
+        "text": "We share personal information only with service providers that help us run the website and our business (for example hosting, email and form delivery), and only as much as they need to do their job.\n\nWe may also disclose information if the law requires it, to protect our rights, or as part of a business transfer such as a merger or sale."
+      },
+      {
+        "title": "How long we keep it",
+        "text": "We keep your information for as long as we need it to answer your request, to carry out any agreement we enter into, and to meet our legal and accounting obligations. After that we delete it or anonymize it."
+      },
+      {
+        "title": "How we protect it",
+        "text": "We use reasonable technical and organizational measures to protect your information, including encrypted connections (HTTPS) and limited access to our inbox. No method of transmission or storage is completely secure, so we cannot guarantee absolute security."
+      },
+      {
+        "title": "Your rights",
+        "text": "Depending on where you live, you may have the right to:\n\n- ask what personal information we hold about you\n- ask us to correct or delete it\n- withdraw your consent to our use of it\n- object to or restrict certain uses\n- complain to your local privacy authority\n\nTo exercise any of these rights, contact us using the details below. We will respond within the time required by applicable law."
+      },
+      {
+        "title": "Children",
+        "text": "This website is intended for businesses and is not directed at children under 16. We do not knowingly collect personal information from children. If you believe a child has sent us information, please contact us and we will delete it."
+      },
+      {
+        "title": "Links to other websites",
+        "text": "This website links to third-party sites such as social networks. We are not responsible for their content or privacy practices, so please read their policies before sharing information with them."
+      },
+      {
+        "title": "Changes to this policy",
+        "text": "We may update this policy from time to time. The date at the top of this page shows when it was last changed. If we make significant changes, we will make that clear on the website."
+      },
+      {
+        "title": "Contact us",
+        "text": "If you have a question about this policy or about your personal information, write to us using the contact details at the bottom of this page."
+      }
+    ]
+  },
+  "terms": {
+    "metaTitle": "Terms of Use — Shark Scale Agency",
+    "metaDescription": "The terms that apply when you visit and use the Shark Scale Agency website.",
+    "title": "Terms of Use",
+    "updated": "November 15, 2026",
+    "intro": "These terms apply to your use of this website. By visiting or using it, you agree to them. If you do not agree, please do not use the website.",
+    "sections": [
+      {
+        "title": "About this website",
+        "text": "This website is operated by Shark Scale Agency (“Shark”, “we”, “us”), a marketing agency based in Montréal, Québec, Canada. It presents our company, our services and our team.\n\nThe website is for general information only. Using it, or sending us a message, does not create a client relationship. Our services are provided only under a separate written agreement."
+      },
+      {
+        "title": "Using the website",
+        "text": "You may use this website for lawful purposes only. You agree not to:\n\n- break any law or infringe anyone’s rights\n- try to gain unauthorized access to the website, our systems or other users’ data\n- introduce malware or interfere with how the website works\n- scrape, copy or collect data from the website by automated means without our permission\n- send false, misleading or spam messages through our contact form"
+      },
+      {
+        "title": "Intellectual property",
+        "text": "The website and everything on it, including text, design, layout, graphics, photography, animations, logos and the Shark Scale Agency name, belongs to us or our licensors and is protected by copyright, trademark and other laws.\n\nYou may view the website and share its address. You may not copy, modify, distribute or reuse any part of it for commercial purposes without our written permission."
+      },
+      {
+        "title": "What you send us",
+        "text": "When you contact us through the website, you confirm that the information you provide is accurate and that you are allowed to share it. You agree that we may contact you about your request. How we handle your personal information is described in our Privacy Policy."
+      },
+      {
+        "title": "No guarantee of results",
+        "text": "Marketing results depend on many factors outside our control, such as your industry, budget, competition and market conditions. Figures and examples shown on this website, including performance numbers and client satisfaction rates, describe past work and are not a promise of future results."
+      },
+      {
+        "title": "Third-party links",
+        "text": "The website may link to third-party websites, such as social networks. We do not control them and are not responsible for their content, availability or practices. You use them at your own risk."
+      },
+      {
+        "title": "Disclaimer",
+        "text": "The website and its content are provided “as is” and “as available”, without warranties of any kind, express or implied. We do not promise that the website will always be available, error-free or free of harmful components, or that its content is complete or up to date."
+      },
+      {
+        "title": "Limitation of liability",
+        "text": "To the fullest extent permitted by law, Shark Scale Agency and its team will not be liable for any indirect, incidental, special or consequential damages, or for loss of profits, revenue, data or business opportunities, arising from your use of, or inability to use, the website.\n\nNothing in these terms limits liability that cannot be limited by law."
+      },
+      {
+        "title": "Governing law",
+        "text": "These terms are governed by the laws of the Province of Québec and the federal laws of Canada that apply there. Any dispute will be brought before the competent courts of the judicial district of Montréal, unless the law of your place of residence gives you the right to bring it elsewhere."
+      },
+      {
+        "title": "Changes to these terms",
+        "text": "We may change these terms from time to time. The updated version applies from the moment it is published on this page, and the date at the top shows when it was last changed. By continuing to use the website after a change, you accept the new terms."
+      },
+      {
+        "title": "Contact us",
+        "text": "If you have a question about these terms, write to us using the contact details at the bottom of this page."
+      }
+    ]
+  }
+}

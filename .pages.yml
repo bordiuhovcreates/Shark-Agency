@@ -131,11 +131,102 @@ content:
       label: Копірайт
       type: string
     - name: credit
-      label: Автор сайту
+      label: Автор сайту (текст)
+      type: string
+    - name: creditUrl
+      label: Автор сайту (посилання, наприклад Instagram)
       type: string
   - name: scrollIndicator
     label: 'Підпис після відсотка прокрутки (унизу ліворуч)'
     type: string
+- name: legal
+  label: Юридичні сторінки (Privacy Policy, Terms of Use)
+  type: file
+  path: src/content/legal.json
+  format: json
+  fields:
+  - name: common
+    label: Спільні підписи
+    type: object
+    fields:
+    - name: eyebrow
+      label: Надзаголовок над назвою
+      type: string
+    - name: updatedLabel
+      label: Підпис дати («Last updated»)
+      type: string
+    - name: backLabel
+      label: Текст кнопки «на головну»
+      type: string
+    - name: contactLabel
+      label: Підпис колонки контактів
+      type: string
+    - name: addressLabel
+      label: Підпис колонки адреси
+      type: string
+    - name: otherLabel
+      label: Підпис посилання на іншу сторінку
+      type: string
+  - name: privacy
+    label: Privacy Policy
+    type: object
+    fields:
+    - name: metaTitle
+      label: Заголовок вкладки браузера
+      type: string
+    - name: metaDescription
+      label: Опис для пошуку
+      type: text
+    - name: title
+      label: Заголовок
+      type: string
+    - name: updated
+      label: Дата останнього оновлення
+      type: string
+    - name: intro
+      label: Підзаголовок (вступ)
+      type: text
+    - name: sections
+      label: Розділи
+      type: object
+      list: true
+      fields:
+      - name: title
+        label: Назва розділу
+        type: string
+      - name: text
+        label: 'Текст (абзаци через порожній рядок, пункти списку з «- » на початку рядка)'
+        type: text
+  - name: terms
+    label: Terms of Use
+    type: object
+    fields:
+    - name: metaTitle
+      label: Заголовок вкладки браузера
+      type: string
+    - name: metaDescription
+      label: Опис для пошуку
+      type: text
+    - name: title
+      label: Заголовок
+      type: string
+    - name: updated
+      label: Дата останнього оновлення
+      type: string
+    - name: intro
+      label: Підзаголовок (вступ)
+      type: text
+    - name: sections
+      label: Розділи
+      type: object
+      list: true
+      fields:
+      - name: title
+        label: Назва розділу
+        type: string
+      - name: text
+        label: 'Текст (абзаци через порожній рядок, пункти списку з «- » на початку рядка)'
+        type: text
 - name: home
   label: Головна сторінка
   type: file

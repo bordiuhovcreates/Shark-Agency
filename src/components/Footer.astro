@@ -2,6 +2,7 @@
 // Підвал: Lottie-акула прокручується зі скролом, поверх — контакти, соцмережі, юридичні посилання.
 import settings from '../content/settings.json';
 import { url } from '../lib/url';
+import CreditLink from './CreditLink.astro';
 
 const { contacts, footer, social, legal } = settings;
 const phoneHref = `tel:${contacts.phone.replace(/\s/g, '')}`;
@@ -50,7 +51,7 @@ const phoneHref = `tel:${contacts.phone.replace(/\s/g, '')}`;
       <div class="_18px-neue white none">{footer.rights}</div>
       <div class="_18px-neue white none">{footer.year}</div>
       <div class="_18px-neue white _40">{footer.copyright}</div>
-      <div class="_18px-neue white _40">{footer.credit}</div>
+      <CreditLink />
     </div>
   </div>
 </footer>

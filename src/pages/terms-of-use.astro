@@ -1,0 +1,8 @@
+---
+import Base from '../layouts/Base.astro';
+import LegalPage from '../components/LegalPage.astro';
+import legal from '../content/legal.json';
+---
+<Base title={legal.terms.metaTitle} description={legal.terms.metaDescription}>
+  <LegalPage doc={legal.terms} other={{ title: legal.privacy.title, href: '/privacy-policy/' }} />
+</Base>

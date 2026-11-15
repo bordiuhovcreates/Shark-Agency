@@ -1,0 +1,27 @@
+---
+// «Website by …» — ссылка на автора сайта (адрес в settings.json → footer.creditUrl).
+// При наведении текст прокручивается вверх (как на кнопках) и становится ярче.
+import settings from '../content/settings.json';
+
+const { footer } = settings;
+---
+<a
+  href={footer.creditUrl}
+  target="_blank"
+  rel="noopener"
+  class="_18px-neue white _40 credit-link"
+  aria-label={`${footer.credit} (Instagram)`}
+>
+  <span class="credit-link__roll">
+    <span>{footer.credit}</span>
+    <span aria-hidden="true">{footer.credit}</span>
+  </span>
+</a>
+
+<style is:global>
+  ._18px-neue.credit-link { display: block; width: auto; cursor: pointer; transition: opacity var(--duration), color var(--duration); }
+  .credit-link__roll { display: block; height: 1em; overflow: clip; }
+  .credit-link__roll > span { display: block; transition: transform var(--duration) var(--cursor-ease); }
+  .credit-link:hover, .credit-link:focus-visible { opacity: 1; color: var(--color-white); }
+  .credit-link:hover .credit-link__roll > span, .credit-link:focus-visible .credit-link__roll > span { transform: translateY(-100%); }
+</style>

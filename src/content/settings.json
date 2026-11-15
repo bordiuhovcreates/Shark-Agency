@@ -29,8 +29,8 @@
     { "label": "Patreon", "href": "" }
   ],
   "legal": [
-    { "label": "Privacy Policy", "href": "" },
-    { "label": "Terms of Use", "href": "" }
+    { "label": "Privacy Policy", "href": "/privacy-policy/" },
+    { "label": "Terms of Use", "href": "/terms-of-use/" }
   ],
   "footer": {
     "lottie": "/lottie/footer.json",
@@ -45,7 +45,8 @@
     "rights": "ALL RIGHTS RESERVED",
     "year": "2026",
     "copyright": "© Shark Agency",
-    "credit": "Website by Bordiuhovv"
+    "credit": "Website by Bordiuhovv",
+    "creditUrl": "https://www.instagram.com/bordiuhovcreates/"
   },
   "scrollIndicator": "SCROLL"
 }
