@@ -16,7 +16,6 @@ const isBlack = variant === 'black';
   type="button"
   class:list={['w-layout-hflex', 'button-main', { 'is-white': variant === 'white' }, cls]}
   data-popup-open={service}
-  data-cursor-blend
 >
   <span class:list={['left-site-button', { white: variant === 'white', black: isBlack }]}>
     {isBlack ? (
