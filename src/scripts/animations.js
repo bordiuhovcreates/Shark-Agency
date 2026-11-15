@@ -9,7 +9,10 @@
 //   data-odometer-group   — група чисел; усередині data-odometer-element на елементі з числом
 //                           (наприклад «1.2B+»): цифри прокручуються барабаном від 0 до потрібної,
 //                           справа наліво; решта символів стоїть на місці.
-//                           На групі: data-odometer-trigger="top 80%" (коли стартувати),
+//                           На групі: data-odometer-at="37" — стартувати, коли прогрес сцени
+//                           (data-scene) дійшов до 37 %, тобто число вийшло з розмиття
+//                           (data-odometer-at-mob — те саме для мобільного);
+//                           або data-odometer-trigger="top 80%" — за положенням групи на екрані;
 //                           data-odometer-stagger="0.1" (затримка між числами в групі).
 //
 // Сцени, прив'язані до скролу (як Webflow «While scrolling in view»):
@@ -140,7 +143,7 @@ function initOdometer() {
     });
 
     const tl = gsap.timeline({
-      scrollTrigger: { trigger: group, start: trigger, once: true },
+      paused: true,
       onComplete() {
         // Повертаємо звичайний текст, щоб його було видно у верстці без зайвих елементів
         items.forEach(({ el, text }) => {
@@ -157,6 +160,27 @@ function initOdometer() {
         tl.to(roller, { y: `${-target * step}em`, duration: DURATION, ease: 'power3.out', force3D: true }, i * stagger + fromRight * DIGIT_STAGGER);
       });
     });
+
+    // Запуск барабана. Два режими:
+    //  1) data-odometer-at="37" — коли прогрес сцени (data-scene) дійшов до 37 %, тобто число вже
+    //     вийшло з розмиття (кінець його data-scrub-rise). Для мобільного: data-odometer-at-mob.
+    //  2) без нього — коли верх групи досяг data-odometer-trigger (за замовчуванням top 80%).
+    const scene = group.closest('[data-scene]');
+    const mobile = window.matchMedia(MOBILE);
+    const atAttr = () => (mobile.matches && group.dataset.odometerAtMob) || group.dataset.odometerAt;
+
+    if (scene && atAttr()) {
+      const st = ScrollTrigger.create({
+        trigger: scene, start: 'top bottom', end: 'bottom top',
+        onUpdate: (self) => {
+          if (self.progress * 100 >= Number(atAttr())) { tl.play(); st.kill(); }
+        },
+      });
+      // Сторінку відкрили вже прокрученою нижче — запускаємо одразу
+      if (st.progress * 100 >= Number(atAttr())) { tl.play(); st.kill(); }
+    } else {
+      ScrollTrigger.create({ trigger: group, start: trigger, once: true, onEnter: () => tl.play() });
+    }
   });
 }
 

@@ -15,7 +15,7 @@ const labelMods = ['', '_213px', '_131px-mob'];
   </h2>
   <div class="w-layout-vflex main-content-sec-3">
     {performance.stats.map((s, i) => (
-      <div class="an-div" data-odometer-group data-odometer-trigger="top 75%">
+      <div class="an-div" data-odometer-group data-odometer-at={37 + i * 6} data-odometer-at-mob={31 + i * 6}>
         <div
           class={`w-layout-grid number _${(i % 3) + 1}-grid`}
           data-scrub-rise={`${31 + i * 6} ${37 + i * 6} 16`}
