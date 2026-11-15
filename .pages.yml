@@ -149,9 +149,6 @@ content:
     label: Спільні підписи
     type: object
     fields:
-    - name: eyebrow
-      label: Надзаголовок над назвою
-      type: string
     - name: updatedLabel
       label: Підпис дати («Last updated»)
       type: string
