@@ -15,14 +15,14 @@ const labelMods = ['', '_213px', '_131px-mob'];
   </h2>
   <div class="w-layout-vflex main-content-sec-3">
     {performance.stats.map((s, i) => (
-      <div class="an-div">
+      <div class="an-div" data-odometer-group data-odometer-trigger="top 75%">
         <div
           class={`w-layout-grid number _${(i % 3) + 1}-grid`}
           data-scrub-rise={`${31 + i * 6} ${37 + i * 6} 16`}
           data-scrub-rise-mob={`${25 + i * 6} ${31 + i * 6} 16`}
         >
           <div class={`_18px-neue orange ${labelMods[i % 3]}`}>{s.label}</div>
-          <div class="_260px-formula">{s.value}</div>
+          <div class="_260px-formula" data-odometer-element>{s.value}</div>
           <div class="_18px-neue _40 auto none-mob num-end">{pad(i + 1)}</div>
         </div>
       </div>

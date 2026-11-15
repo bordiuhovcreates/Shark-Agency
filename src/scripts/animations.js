@@ -6,6 +6,11 @@
 //   data-anim="fade-late" — повільна поява із затримкою (заголовки послуг)
 //   data-anim="stagger"   — дочірні елементи з'являються по черзі
 //   data-count="350"      — лічильник цифр від 0 до числа (data-suffix="+" — знак після)
+//   data-odometer-group   — група чисел; усередині data-odometer-element на елементі з числом
+//                           (наприклад «1.2B+»): цифри прокручуються барабаном від 0 до потрібної,
+//                           справа наліво; решта символів стоїть на місці.
+//                           На групі: data-odometer-trigger="top 80%" (коли стартувати),
+//                           data-odometer-stagger="0.1" (затримка між числами в групі).
 //
 // Сцени, прив'язані до скролу (як Webflow «While scrolling in view»):
 //   data-scene — елемент-сцена. Прогрес 0–100 %: від моменту, коли верх сцени
@@ -39,6 +44,8 @@ const SHARP = 'blur(0px)';
 
 function initAnimations() {
   if (reduce) return;
+
+  initOdometer();
 
   const start = 'top 85%';
 
@@ -79,6 +86,76 @@ function initAnimations() {
       value: target, duration: 1.6, ease: 'power2.out',
       scrollTrigger: { trigger: el, start, once: true },
       onUpdate: () => { el.textContent = `${Math.round(counter.value)}${suffix}`; },
+    });
+  });
+}
+
+/* ---------- Цифри-барабан (odometer) ---------- */
+
+function initOdometer() {
+  const CYCLES = 2;          // скільки разів колонка 0–9 повторюється в барабані
+  const DURATION = 1;        // секунд на прокрутку одного розряду
+  const DIGIT_STAGGER = 0.04; // затримка між розрядами
+
+  document.querySelectorAll('[data-odometer-group]').forEach((group) => {
+    const elements = [...group.querySelectorAll('[data-odometer-element]')];
+    if (!elements.length) return;
+
+    const trigger = group.dataset.odometerTrigger || 'top 80%';
+    const stagger = parseFloat(group.dataset.odometerStagger) || 0.1;
+
+    const items = elements.map((el) => {
+      const text = el.textContent.trim();
+      const cs = getComputedStyle(el);
+      const step = cs.lineHeight === 'normal' ? 1.2 : parseFloat(cs.lineHeight) / parseFloat(cs.fontSize);
+
+      el.setAttribute('role', 'img');
+      el.setAttribute('aria-label', text);
+      el.textContent = '';
+
+      const rollers = [];
+      [...text].forEach((ch) => {
+        const mask = document.createElement('span');
+        mask.dataset.odometerPart = /\d/.test(ch) ? 'mask' : 'static';
+        mask.style.height = `${step}em`;
+        mask.style.lineHeight = String(step);
+        mask.setAttribute('aria-hidden', 'true');
+
+        if (/\d/.test(ch)) {
+          const roller = document.createElement('span');
+          roller.dataset.odometerPart = 'roller';
+          roller.style.lineHeight = String(step);
+          roller.textContent = Array.from({ length: 10 * CYCLES }, (_, i) => i % 10).join('\n');
+          mask.appendChild(roller);
+          const digit = Number(ch);
+          rollers.push({ roller, target: digit === 0 ? 10 : digit });
+        } else {
+          mask.textContent = ch;
+        }
+        el.appendChild(mask);
+      });
+
+      gsap.set(el.querySelectorAll('[data-odometer-part="roller"]'), { y: 0 });
+      return { el, text, step, rollers };
+    });
+
+    const tl = gsap.timeline({
+      scrollTrigger: { trigger: group, start: trigger, once: true },
+      onComplete() {
+        // Повертаємо звичайний текст, щоб його було видно у верстці без зайвих елементів
+        items.forEach(({ el, text }) => {
+          el.textContent = text;
+          el.removeAttribute('role');
+          el.removeAttribute('aria-label');
+        });
+      },
+    });
+
+    items.forEach(({ rollers, step }, i) => {
+      rollers.forEach(({ roller, target }, d) => {
+        const fromRight = rollers.length - 1 - d;
+        tl.to(roller, { y: `${-target * step}em`, duration: DURATION, ease: 'power3.out', force3D: true }, i * stagger + fromRight * DIGIT_STAGGER);
+      });
     });
   });
 }

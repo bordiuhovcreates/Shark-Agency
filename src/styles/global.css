@@ -170,6 +170,11 @@ ul[role='list'] { list-style: none; margin: 0; padding: 0; }
   ._30px-formula.white._22px-mob { font-size: var(--text-22); }
 }
 
+/* Цифри-барабан: окошко з колонкою цифр (див. animations.js, data-odometer-*) */
+[data-odometer-element] { display: inline-flex; align-items: center; font-variant-numeric: tabular-nums; }
+[data-odometer-part='mask'], [data-odometer-part='static'] { display: inline-block; overflow: clip; padding: 0.05em; margin: -0.05em; }
+[data-odometer-part='roller'] { display: block; white-space: pre; text-align: center; will-change: transform; }
+
 /* Доступність */
 .visually-hidden {
   position: absolute !important; width: 1px; height: 1px; overflow: hidden;
