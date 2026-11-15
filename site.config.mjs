@@ -9,5 +9,7 @@ export const BASE_PATH = '/REPO-NAME';
 // export const SITE_URL = 'https://solar.your-domain.com';
 // export const BASE_PATH = '/';
 
-// URL веб-застосунку Google Apps Script (закінчується на /exec)
-export const FORM_ENDPOINT = '';
+// Куди йдуть заявки з форми.
+// Зараз — на пошту через FormSubmit: https://formsubmit.co/ajax/ПОШТА
+// Можна замінити на URL Google Apps Script (закінчується на /exec) — тоді заявки підуть у Telegram і таблицю.
+export const FORM_ENDPOINT = 'https://formsubmit.co/ajax/vladlenbordugov@gmail.com';

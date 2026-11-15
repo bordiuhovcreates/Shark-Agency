@@ -94,17 +94,39 @@ const { form } = home;
         return;
       }
 
+      const showSuccess = () => { form.hidden = true; success.hidden = false; };
+
+      // Поле-пастка заповнене — це бот: вдаємо успіх і нічого не надсилаємо
+      if (payload.website) return showSuccess();
+
       button.disabled = true;
       button.value = form.dataset.wait || label;
       try {
-        // text/plain — щоб браузер не блокував запит до Google (CORS)
-        const res = await fetch(endpoint, {
-          method: 'POST',
-          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: JSON.stringify(payload),
-        });
+        const toEmail = endpoint.includes('formsubmit.co');
+        const res = await fetch(endpoint, toEmail
+          ? {
+              // Заявка на пошту (FormSubmit)
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+              body: JSON.stringify({
+                _subject: `Нова заявка з сайту — ${payload.service}`,
+                _template: 'table',
+                Name: payload.name,
+                Email: payload.email,
+                Phone: payload.phone,
+                Form: payload.service,
+                Page: window.location.href,
+              }),
+            }
+          : {
+              // Google Apps Script: text/plain — щоб браузер не блокував запит (CORS)
+              method: 'POST',
+              headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+              body: JSON.stringify(payload),
+            });
         const json = await res.json();
-        if (!json.ok) throw new Error(json.error || 'Error');
+        const ok = json.ok === true || json.success === true || json.success === 'true';
+        if (!ok) throw new Error(json.error || json.message || 'Error');
         form.hidden = true;
         success.hidden = false;
       } catch (err) {
