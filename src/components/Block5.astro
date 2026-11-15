@@ -18,12 +18,14 @@ const unblur = [[23, 39], [31, 48], [40, 57], [48, 66], [58, 76], [67, 78]];
   </div>
   <div class="w-layout-grid grid">
     {team.members.map((m, i) => (
-      <div class={`team-card _${(i % 6) + 1}`}>
-        <div
-          class="w-layout-vflex team-card__inner"
-          style={`background-image: url('${url(m.photo)}')`}
-          data-scrub-unblur={unblur[i % 6].join(' ')}
-        >
+      <div class={`team-card _${(i % 6) + 1}`} data-scrub-unblur={unblur[i % 6].join(' ')}>
+        {/* Два однакові шари: чіткий і вже розмитий. При скролі змінюється лише їхня прозорість —
+            розмиття не перераховується на кожному кадрі, тому в Safari немає рожевих ліній. */}
+        <div class="w-layout-vflex team-card__face" data-unblur-sharp style={`background-image: url('${url(m.photo)}')`}>
+          <div class="_30px-formula white _18px-mob">{m.name}</div>
+          <div class="_18px-neue white">{m.role}</div>
+        </div>
+        <div class="w-layout-vflex team-card__face team-card__face--soft" data-unblur-soft aria-hidden="true" style={`background-image: url('${url(m.photo)}')`}>
           <div class="_30px-formula white _18px-mob">{m.name}</div>
           <div class="_18px-neue white">{m.role}</div>
         </div>
@@ -38,10 +40,11 @@ const unblur = [[23, 39], [31, 48], [40, 57], [48, 66], [58, 76], [67, 78]];
   .text-vertical-05 h2 { margin: 20px 0 10px; }
   .small-text-05 { grid-column-gap: var(--space-20); grid-row-gap: var(--space-20); align-items: center; }
   .grid { grid-column-gap: var(--space-100); grid-row-gap: var(--space-100); grid-template-rows: auto; grid-auto-rows: auto; grid-template-columns: 1fr; padding-bottom: var(--space-40); position: relative; }
-  /* Картка — рамка з обрізкою по заокруглених кутах. Розмивається лише вміст усередині (__inner),
-     тому розмиття не виходить за край — Safari не малює рожевих ліній по краях filter: blur. */
-  .team-card { border-radius: var(--radius-5); width: 27.8125em; height: 37.5em; margin-left: 12.1875em; overflow: hidden; clip-path: inset(0 round var(--radius-5)); isolation: isolate; }
-  .team-card__inner { height: 100%; background-position: 50%; background-size: cover; justify-content: space-between; padding-top: var(--space-20); padding-bottom: var(--space-20); padding-left: var(--space-20); will-change: filter; }
+  /* Картка: два шари одне над одним. Без JS видно чіткий шар. Розмитий шар має статичний blur(5px)
+     і змішується додаванням (plus-lighter), тож посередині переходу картка не темнішає. */
+  .team-card { position: relative; isolation: isolate; border-radius: var(--radius-5); width: 27.8125em; height: 37.5em; margin-left: 12.1875em; }
+  .team-card__face { position: absolute; inset: 0; border-radius: inherit; background-position: 50%; background-size: cover; justify-content: space-between; padding-top: var(--space-20); padding-bottom: var(--space-20); padding-left: var(--space-20); }
+  .team-card__face--soft { filter: blur(5px); mix-blend-mode: plus-lighter; opacity: 0; pointer-events: none; }
   .team-card._2 { margin-left: 0; margin-right: var(--space-40); justify-self: end; }
   .team-card._3 { margin-left: 0; margin-right: 31.5625em; justify-self: end; }
   .team-card._5 { margin-left: 0; margin-right: var(--space-40); justify-self: end; }
@@ -52,7 +55,7 @@ const unblur = [[23, 39], [31, 48], [40, 57], [48, 66], [58, 76], [67, 78]];
     .text-vertical-05 { padding-top: var(--space-20); padding-bottom: var(--space-20); }
     .grid { grid-template-columns: 100%; padding-bottom: var(--space-20); }
     .team-card { width: 10.625em; height: 14.375em; margin-left: var(--space-20); }
-    .team-card__inner { padding-top: var(--space-10); padding-bottom: var(--space-10); padding-left: var(--space-10); }
+    .team-card__face { padding-top: var(--space-10); padding-bottom: var(--space-10); padding-left: var(--space-10); }
     .team-card._2 { margin-right: var(--space-20); }
     .team-card._3 { margin-left: var(--space-20); margin-right: 0; justify-self: start; }
     .team-card._4 { margin-left: 0; margin-right: var(--space-20); justify-self: end; }

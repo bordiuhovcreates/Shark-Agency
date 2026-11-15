@@ -22,7 +22,8 @@
 //   data-scrub-words="початок крок тривалість" — слова (<span>) по черзі виходять з розмиття
 //   data-scrub-reveal="початок кінець"         — поява з розмиття
 //   data-scrub-rise="початок кінець em"        — поява зі зсувом знизу на N em
-//   data-scrub-unblur="початок кінець"         — з розмитого в чітке
+//   data-scrub-unblur="початок кінець"         — з розмитого в чітке (з дочірніми data-unblur-sharp
+//                                                і data-unblur-soft — через зміну прозорості шарів)
 //   data-scrub-width="початок кінець"          — ширина 0 → 100 %
 //   data-scrub-scale="початок кінець від"      — масштаб від → 1
 //   data-lottie="шлях.json" data-scrub-lottie="початок кінець" — Lottie крутиться разом зі скролом
@@ -258,7 +259,20 @@ function buildScene(scene, mob) {
     }
 
     const u = get('unblur');
-    if (u) tl.fromTo(el, { filter: BLUR }, { filter: SHARP, duration: u[1] - u[0] }, u[0]);
+    if (u) {
+      // Якщо всередині є пара шарів [data-unblur-sharp] + [data-unblur-soft] — плавно міняємо їхню
+      // прозорість (розмиття не перераховується щокадру, тож Safari не малює артефактів).
+      // Інакше — анімуємо filter: blur на самому елементі.
+      const sharp = el.querySelector('[data-unblur-sharp]');
+      const soft = el.querySelector('[data-unblur-soft]');
+      const duration = u[1] - u[0];
+      if (sharp && soft) {
+        tl.fromTo(soft, { opacity: 1 }, { opacity: 0, duration }, u[0]);
+        tl.fromTo(sharp, { opacity: 0 }, { opacity: 1, duration }, u[0]);
+      } else {
+        tl.fromTo(el, { filter: BLUR }, { filter: SHARP, duration }, u[0]);
+      }
+    }
 
     const wd = get('width');
     if (wd) tl.fromTo(el, { width: '0%' }, { width: '100%', duration: wd[1] - wd[0] }, wd[0]);
