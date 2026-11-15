@@ -36,9 +36,10 @@
     "lottie": "/lottie/footer.json",
     "since": "EST 2018 ©",
     "clock": "WED 16:29:54 (GMT+2)",
+    "timezone": "Europe/Kyiv",
     "cta": "Let’s make an impact together.",
     "contactLabel": "Contact",
-    "addressLabel": "Adress",
+    "addressLabel": "Address",
     "socialLabel": "Social",
     "legalLabel": "Legal",
     "rights": "ALL RIGHTS RESERVED",
@@ -46,5 +47,5 @@
     "copyright": "© Shark Agency",
     "credit": "Website by Bordiuhovv"
   },
-  "scrollIndicator": "0% SCROLL"
+  "scrollIndicator": "SCROLL"
 }

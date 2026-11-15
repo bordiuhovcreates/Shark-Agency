@@ -101,7 +101,10 @@ content:
       label: Рік заснування (під email)
       type: string
     - name: clock
-      label: Текст праворуч угорі
+      label: Час праворуч угорі (показується, поки сторінка вантажиться)
+      type: string
+    - name: timezone
+      label: 'Часовий пояс годинника, наприклад Europe/Kyiv (порожнє — час відвідувача)'
       type: string
     - name: cta
       label: Заклик над email
@@ -131,7 +134,7 @@ content:
       label: Автор сайту
       type: string
   - name: scrollIndicator
-    label: Підпис унизу ліворуч (індикатор скролу)
+    label: 'Підпис після відсотка прокрутки (унизу ліворуч)'
     type: string
 - name: home
   label: Головна сторінка

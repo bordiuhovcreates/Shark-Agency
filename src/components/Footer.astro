@@ -19,7 +19,7 @@ const phoneHref = `tel:${contacts.phone.replace(/\s/g, '')}`;
         <div class="_18px-neue white foot">{contacts.email}</div>
         <div class="_18px-neue white">{footer.since}</div>
       </div>
-      <div class="_18px-neue orange right footer-clock">{footer.clock}</div>
+      <div class="_18px-neue orange right footer-clock" data-clock={footer.timezone}>{footer.clock}</div>
     </div>
     <div class="w-layout-vflex cta">
       <div class="_30px-formula white _22px-mob">{footer.cta}</div>

@@ -1,4 +1,4 @@
-// Попап з формою, мобільне меню і FAQ-акордеон.
+// Попап з формою, мобільне меню, FAQ-акордеон, годинник у підвалі, відсоток скролу.
 // Плавний скрол до блоків уже працює через CSS (scroll-behavior у global.css).
 
 import { gsap } from 'gsap';
@@ -10,7 +10,7 @@ const EASE = 'power1.inOut';
 // Панель, що виїжджає справа з поворотом (попап і мобільне меню)
 function slidePanel(panel, box, closeShift) {
   let open = false;
-  gsap.set(box, { xPercent: 100, rotation: 10 });
+  gsap.set(box, { x: 0, y: 0, xPercent: 100, rotation: 10 });
   return {
     show() {
       open = true;
@@ -99,3 +99,40 @@ document.addEventListener('click', (e) => {
   if (e.target instanceof Element && e.target.closest('[data-faq]')) return;
   faqs.forEach((item) => setFaq(item, false));
 });
+
+// Годинник у підвалі: [data-clock="Europe/Kyiv"] — формат «WED 16:29:54 (GMT+2)».
+// Порожній часовий пояс — час відвідувача.
+document.querySelectorAll('[data-clock]').forEach((el) => {
+  const timeZone = el.dataset.clock || undefined;
+  let day, time, zone;
+  try {
+    day = new Intl.DateTimeFormat('en-US', { timeZone, weekday: 'short' });
+    time = new Intl.DateTimeFormat('en-GB', { timeZone, hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23' });
+    zone = new Intl.DateTimeFormat('en-US', { timeZone, timeZoneName: 'shortOffset' });
+  } catch {
+    return; // невідомий часовий пояс — лишається текст з адмінки
+  }
+  const tick = () => {
+    const now = new Date();
+    const offset = zone.formatToParts(now).find((p) => p.type === 'timeZoneName')?.value || '';
+    el.textContent = `${day.format(now).toUpperCase()} ${time.format(now)}${offset ? ` (${offset})` : ''}`;
+  };
+  tick();
+  setInterval(tick, 1000);
+});
+
+// Відсоток прокрутки сторінки: [data-scroll-progress]
+const progress = document.querySelector('[data-scroll-progress]');
+if (progress) {
+  let ticking = false;
+  const update = () => {
+    ticking = false;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    progress.textContent = String(max > 0 ? Math.round((window.scrollY / max) * 100) : 0);
+  };
+  window.addEventListener('scroll', () => {
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  }, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+}

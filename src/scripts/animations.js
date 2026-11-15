@@ -85,7 +85,7 @@ function initAnimations() {
 
 /* ---------- Lottie ---------- */
 
-// Завантажує анімацію, коли контейнер наближається до екрана. Кадр задає прогрес у %.
+// Завантажує анімацію після завантаження сторінки. Кадр задає прогрес у %.
 function setupLottie(el) {
   const state = { anim: null, pct: 1 };
   el.style.opacity = '0';
@@ -106,10 +106,9 @@ function setupLottie(el) {
     });
   };
 
-  const io = new IntersectionObserver((entries) => {
-    if (entries.some((e) => e.isIntersecting)) { io.disconnect(); load(); }
-  }, { rootMargin: '100% 0px' });
-  io.observe(el);
+  // Завантажуємо після завантаження сторінки, щоб не гальмувати перший екран
+  if (document.readyState === 'complete') load();
+  else window.addEventListener('load', load, { once: true });
 
   el._lottie = { state, render };
 }
