@@ -2,8 +2,8 @@
 // Claude змінює ці значення за вашим проханням, вручну правити не обов'язково.
 
 // Адреса на GitHub Pages: https://ЛОГІН.github.io/НАЗВА-РЕПОЗИТОРІЮ
-export const SITE_URL = 'https://LOGIN.github.io';
-export const BASE_PATH = '/REPO-NAME';
+export const SITE_URL = 'https://bordiuhovcreates.github.io';
+export const BASE_PATH = '/Shark-Agency';
 
 // Свій домен або піддомен: сайт живе в корені
 // export const SITE_URL = 'https://solar.your-domain.com';
