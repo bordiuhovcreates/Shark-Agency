@@ -4,5 +4,5 @@ import LegalPage from '../components/LegalPage.astro';
 import legal from '../content/legal.json';
 ---
 <Base title={legal.privacy.metaTitle} description={legal.privacy.metaDescription}>
-  <LegalPage doc={legal.privacy} other={{ title: legal.terms.title, href: '/terms-of-use/' }} />
+  <LegalPage doc={legal.privacy} />
 </Base>

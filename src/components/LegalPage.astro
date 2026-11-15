@@ -4,15 +4,13 @@
 import settings from '../content/settings.json';
 import legal from '../content/legal.json';
 import { url } from '../lib/url';
-import CreditLink from './CreditLink.astro';
 
 interface Props {
   doc: { title: string; updated: string; intro: string; sections: { title: string; text: string }[] };
-  other: { title: string; href: string };
 }
-const { doc, other } = Astro.props;
+const { doc } = Astro.props;
 const { common } = legal;
-const { contacts, footer } = settings;
+const { contacts } = settings;
 const phoneHref = `tel:${contacts.phone.replace(/\s/g, '')}`;
 
 // Текст розділу: абзаци розділені порожнім рядком, рядки з «- » — маркований список
@@ -47,15 +45,14 @@ const blocks = (text: string) =>
         </div>
       </section>
     ))}
-  </main>
 
-  <footer class="legal__footer">
-    <a href={`mailto:${contacts.email}`} class="legal__link">{contacts.email}</a>
-    <a href={phoneHref} class="legal__link">{contacts.phone}</a>
-    <a href={url(other.href)} class="legal__link">{other.title}</a>
-    <span class="legal__copy">{footer.copyright}</span>
-    <CreditLink />
-  </footer>
+    <!-- Контакти, на які посилається останній розділ «Contact us» -->
+    <address class="legal__contacts">
+      <a href={`mailto:${contacts.email}`} class="legal__link">{contacts.email}</a>
+      <a href={phoneHref} class="legal__link">{contacts.phone}</a>
+      <span>{contacts.address}</span>
+    </address>
+  </main>
 </div>
 
 <style is:global>
@@ -79,19 +76,18 @@ const blocks = (text: string) =>
   .legal__text p { margin: 0; }
   .legal__text ul { margin: 0; padding-left: 1.2em; display: flex; flex-direction: column; gap: .4em; }
 
-  .legal__footer { display: flex; flex-wrap: wrap; gap: var(--space-20) var(--space-40); margin-top: var(--space-100); padding-top: var(--space-40); }
-  .legal__copy { font-family: var(--font-neue); font-size: var(--text-18); line-height: 1; }
-  .legal__footer ._18px-neue.credit-link { font-size: var(--text-18); }
+  .legal__contacts { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-10); margin: var(--space-20) 0 var(--space-100); font-style: normal; font-family: var(--font-neue); font-size: var(--text-18); line-height: 1.5; }
+  .legal__contacts .legal__link { line-height: 1.5; }
 
   @media screen and (max-width: 479px) {
     .legal { padding: var(--space-20); }
     .legal__logo-img { width: 1.875em; height: 1.875em; }
-    .legal__link, .legal__copy, .legal__footer ._18px-neue.credit-link { font-size: var(--text-14); }
+    .legal__link, .legal__contacts { font-size: var(--text-14); }
     .legal__doc { margin-top: var(--space-60); }
     .legal__title { font-size: var(--text-50); }
     .legal__meta, .legal__intro, .legal__text { font-size: var(--text-14); }
     .legal__section { margin-top: var(--space-40); }
     .legal__heading { font-size: var(--text-22); }
-    .legal__footer { margin-top: var(--space-60); flex-direction: column; }
+    .legal__contacts { margin-bottom: var(--space-60); }
   }
 </style>

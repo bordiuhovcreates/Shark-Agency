@@ -155,15 +155,6 @@ content:
     - name: backLabel
       label: Текст кнопки «на головну»
       type: string
-    - name: contactLabel
-      label: Підпис колонки контактів
-      type: string
-    - name: addressLabel
-      label: Підпис колонки адреси
-      type: string
-    - name: otherLabel
-      label: Підпис посилання на іншу сторінку
-      type: string
   - name: privacy
     label: Privacy Policy
     type: object

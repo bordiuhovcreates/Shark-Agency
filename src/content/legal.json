@@ -1,10 +1,7 @@
 {
   "common": {
     "updatedLabel": "Last updated",
-    "backLabel": "Back to home",
-    "contactLabel": "Contact",
-    "addressLabel": "Address",
-    "otherLabel": "Also read"
+    "backLabel": "Back to home"
   },
   "privacy": {
     "metaTitle": "Privacy Policy — Shark Scale Agency",
@@ -15,7 +12,7 @@
     "sections": [
       {
         "title": "Who we are",
-        "text": "This website is operated by Shark Scale Agency (“Shark”, “we”, “us”), a marketing agency based in Montréal, Québec, Canada.\n\nWe are responsible for the personal information collected through this website. You can reach us at any time using the contact details at the bottom of this page."
+        "text": "This website is operated by Shark Scale Agency (“Shark”, “we”, “us”), a marketing agency based in Montréal, Québec, Canada.\n\nWe are responsible for the personal information collected through this website. You can reach us at any time using the contact details in the “Contact us” section below."
       },
       {
         "title": "Information we collect",
@@ -63,7 +60,7 @@
       },
       {
         "title": "Contact us",
-        "text": "If you have a question about this policy or about your personal information, write to us using the contact details at the bottom of this page."
+        "text": "If you have a question about this policy or about your personal information, write to us using the contact details below."
       }
     ]
   },
@@ -116,7 +113,7 @@
       },
       {
         "title": "Contact us",
-        "text": "If you have a question about these terms, write to us using the contact details at the bottom of this page."
+        "text": "If you have a question about these terms, write to us using the contact details below."
       }
     ]
   }
