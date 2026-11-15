@@ -15,11 +15,13 @@ const labelMods = ['', '_213px', '_131px-mob'];
   </h2>
   <div class="w-layout-vflex main-content-sec-3">
     {performance.stats.map((s, i) => (
-      <div class="an-div" data-odometer-group data-odometer-at={37 + i * 6} data-odometer-at-mob={31 + i * 6}>
+      // Виїзд розтягнуто на 10 % скролу сцени (раніше 6 %), щоб на телефоні рядок не «вистрибував».
+      // Барабан цифр стартує в кінці виїзду (data-odometer-at = кінець data-scrub-rise).
+      <div class="an-div" data-odometer-group data-odometer-at={38 + i * 7} data-odometer-at-mob={30 + i * 7}>
         <div
           class={`w-layout-grid number _${(i % 3) + 1}-grid`}
-          data-scrub-rise={`${31 + i * 6} ${37 + i * 6} 16`}
-          data-scrub-rise-mob={`${25 + i * 6} ${31 + i * 6} 16`}
+          data-scrub-rise={`${28 + i * 7} ${38 + i * 7} 16`}
+          data-scrub-rise-mob={`${20 + i * 7} ${30 + i * 7} 16`}
         >
           <div class={`_18px-neue orange ${labelMods[i % 3]}`}>{s.label}</div>
           <div class="_260px-formula" data-odometer-element>{s.value}</div>
@@ -28,7 +30,7 @@ const labelMods = ['', '_213px', '_131px-mob'];
       </div>
     ))}
     <div class="an-team-4">
-      <div class="w-layout-grid grid-team" data-scrub-rise="63 69 24" data-scrub-rise-mob="57 63 24">
+      <div class="w-layout-grid grid-team" data-scrub-rise="58 70 24" data-scrub-rise-mob="50 62 24">
         <div class="_18px-neue orange _270px team-text">{performance.teamText}</div>
         {performance.avatars.slice(0, 5).map((a, i) => (
           <img src={url(a.image)} loading="lazy" width="270" height="270" alt="" class={`team-member av-${i + 1}`} />

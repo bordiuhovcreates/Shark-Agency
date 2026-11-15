@@ -39,7 +39,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const MOBILE = '(max-width: 479px)';
-const SMOOTH = 0.2; // згладжування скролу (як smoothing 50 у Webflow)
+const SMOOTH = 0.5; // згладжування: скільки секунд анімація «доганяє» скрол (більше — плавніше)
 const BLUR = 'blur(5px)';
 const SHARP = 'blur(0px)';
 
