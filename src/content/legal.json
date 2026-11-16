@@ -24,7 +24,7 @@
       },
       {
         "title": "How form submissions are delivered",
-        "text": "Messages sent through our contact form are passed to a third-party form-delivery service, which forwards them to our email inbox. That service processes your submission only to deliver it to us, and it applies its own privacy practices.\n\nPlease do not include confidential or sensitive information in the form."
+        "text": "Messages sent through our contact form are passed to Google (Google Apps Script) and stored in a private Google Sheets spreadsheet that only our team can access. Google processes your submission only to store it for us, and it applies its own privacy practices.\n\nPlease do not include confidential or sensitive information in the form."
       },
       {
         "title": "Cookies and analytics",
@@ -32,7 +32,7 @@
       },
       {
         "title": "Who we share it with",
-        "text": "We share personal information only with service providers that help us run the website and our business (for example hosting, email and form delivery), and only as much as they need to do their job.\n\nWe may also disclose information if the law requires it, to protect our rights, or as part of a business transfer such as a merger or sale."
+        "text": "We share personal information only with service providers that help us run the website and our business (for example hosting, email and storing form submissions), and only as much as they need to do their job.\n\nWe may also disclose information if the law requires it, to protect our rights, or as part of a business transfer such as a merger or sale."
       },
       {
         "title": "How long we keep it",
