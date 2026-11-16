@@ -10,6 +10,6 @@ export const BASE_PATH = '/Shark-Agency';
 // export const BASE_PATH = '/';
 
 // Куди йдуть заявки з форми.
-// Зараз — на пошту через FormSubmit: https://formsubmit.co/ajax/ПОШТА
-// Можна замінити на URL Google Apps Script (закінчується на /exec) — тоді заявки підуть у Telegram і таблицю.
-export const FORM_ENDPOINT = 'https://formsubmit.co/ajax/vladlenbordugov@gmail.com';
+// Зараз — Google Apps Script (закінчується на /exec): заявки йдуть у Google-таблицю «Заявки Shark Agency».
+// Можна замінити на пошту через FormSubmit: https://formsubmit.co/ajax/ПОШТА
+export const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwbaq6uajYH04rs_5MCRlIYxKTTEc7q5ttYhjrkoLNsrtH-1a2pnkilxQ78mo_kiCv2/exec';
